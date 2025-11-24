@@ -1,4 +1,4 @@
-# Food_Donation_Website
+# Annadata-Food_Donation_Website
 
  • Authentication based on 3 roles- Donor, Food Bank, Organization
  • Donors can signup, login, donate food products to the desired food banks
