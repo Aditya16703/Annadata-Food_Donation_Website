@@ -11,6 +11,8 @@ const foodBankRoutes = require("./routes/foodBankRoutes");
 const campRoutes = require("./routes/campRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+const errorHandler = require("./middleware/errorMiddleware");
+
 const app = express();
 
 dotenv.config();
@@ -22,7 +24,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://https://fooddonationwebsiteannadata.netlify.app", "http://localhost:3000"],
+    origin: ["https://fooddonationwebsiteannadata.netlify.app", "http://localhost:3000"],
     credentials: true,
   })
 );
@@ -33,23 +35,29 @@ app.use("/camps", campRoutes);
 app.use("/user", userRoutes);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
+// corrected from client/build to ../frontend/build if applicable, 
+// but usually in these setups it's relative to backend.
+// Let's assume frontend build is at ../frontend/build
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to FoodBank!"); // Example response
+  res.send("Welcome to Annadata FoodBank API!");
 });
 
 // The catch-all handler: for any request that doesn't match one above, send back React's index.html file.
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
+
+// Error Handling Middleware
+app.use(errorHandler);
 
 // Server is running at
 const PORT = process.env.PORT || 3177;
 
 app.listen(PORT, () => {
   console.log(
-    `Server is running in ${process.env.DEV_MODE} mode at port ${PORT}`.bgCyan
+    `Server is running in ${process.env.DEV_MODE || 'development'} mode at port ${PORT}`.bgCyan
       .white
   );
 });

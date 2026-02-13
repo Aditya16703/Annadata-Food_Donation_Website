@@ -1,4 +1,4 @@
-const Camp = require("../models/campSchma"); // Import Camp model
+const Camp = require("../models/campSchema"); // Import Camp model
 
 // Create a new camp
 const createCamp = async (req, res) => {

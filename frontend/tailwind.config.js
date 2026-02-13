@@ -22,8 +22,11 @@ module.exports = {
 			bermuda: "#78dcca",
 			black: "#000",
 			red: "#dd112e",
-			blood: "#de2c2c",
-			green: "#09c360",
+			green: {
+        DEFAULT: "#09c360",
+        primary: "#16a34a",
+        dark: "#15803d",
+      },
 			yellow: "#ff0",
 			yellowX: "#e2b100",
 			gray: {

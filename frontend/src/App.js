@@ -59,11 +59,11 @@ export default function App() {
                 />
               ))}
             <Route path="about" element={<About />} />
-            <Route path="aboutBloodDonation" element={<AboutDonation />} />
-            <Route path="bloodDirect" element={<Banks />} />
-            <Route path="bloodCamps" element={<Camps />} />
+            <Route path="about-food-donation" element={<AboutDonation />} />
+            <Route path="food-banks" element={<Banks />} />
+            <Route path="food-camps" element={<Camps />} />
             <Route path="contactUs" element={<Contact />} />
-            <Route path="*" element={<div>404</div>} />
+            <Route path="*" element={<div>404 Not Found</div>} />
           </Route>
         </Routes>
       </BrowserRouter>

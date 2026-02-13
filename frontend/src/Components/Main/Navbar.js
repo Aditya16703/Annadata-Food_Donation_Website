@@ -90,7 +90,7 @@ const Navbar = (props) => {
                 <DropDown
                   title="Looking For Food"
                   items={["User Login/Register", "Food Bank Directory"]}
-                  links={["/register/patient", "/bloodDirect"]}
+                  links={["/register/receiver", "/food-banks"]}
                 />
 
                 <DropDown
@@ -102,8 +102,8 @@ const Navbar = (props) => {
                   ]}
                   links={[
                     "/register/donor",
-                    "/bloodCamps",
-                    "/aboutBloodDonation",
+                    "/food-camps",
+                    "/about-food-donation",
                   ]}
                 />
 

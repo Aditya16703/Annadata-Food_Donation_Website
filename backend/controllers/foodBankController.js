@@ -45,10 +45,10 @@ const updateStock = async (req, res) => {
         },
       }
     );
-    res.status(200).send();
+    res.status(200).json({ success: true, message: "Stock updated successfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).send();
+    res.status(500).json({ success: false, message: "Failed to update stock" });
   }
 };
 
@@ -57,7 +57,7 @@ const deleteStock = async (req, res) => {
   try {
     const prevStock = await FoodBank.findOne({ _id: req.user }, { stock: 1 });
     if (prevStock.stock[req.body.foodGroup] < req.body.units) {
-      res.status(404).send("Not enough food");
+      res.status(400).json({ success: false, message: "Insufficient food stock" });
     } else {
       await FoodBank.updateOne(
         { _id: req.user },
@@ -68,11 +68,11 @@ const deleteStock = async (req, res) => {
           },
         }
       );
-      res.status(200).send();
+      res.status(200).json({ success: true, message: "Stock decreased successfully" });
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send();
+    res.status(500).json({ success: false, message: "Failed to decrease stock" });
   }
 };
 

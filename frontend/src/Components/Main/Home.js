@@ -56,13 +56,13 @@ const Home = () => {
         <div className="mt-6 md:mt-0 px-4 text-center">
           <p className="font-bold text-3xl md:text-4xl text-gray-dark dark:text-white-900 leading-snug">
             “Hunger is not an issue of charity. It is an issue of justice.” <br />
-            <span className="text-blood text-xl">– Jacques Diouf</span>
+            <span className="text-green-600 text-xl">– Jacques Diouf</span>
           </p>
         </div>
       </div>
 
       {/* Know About Donation Section */}
-      <h1 className="font-bold text-center text-blood my-8 text-2xl underline">
+      <h1 className="font-bold text-center text-green-600 my-8 text-2xl underline">
         Know About Donation
       </h1>
 
@@ -88,7 +88,7 @@ const Home = () => {
               <tr>
                 <th
                   colSpan={2}
-                  className="border bg-blood text-white-900 font-bold py-2"
+                  className="border bg-green-600 text-white-900 font-bold py-2"
                 >
                   Compatible Food Types You Can Donate
                 </th>
@@ -111,7 +111,7 @@ const Home = () => {
       </div>
 
       {/* Food Donation Process */}
-      <p className="text-2xl underline font-bold text-blood text-center mt-10 mb-6">
+      <p className="text-2xl underline font-bold text-green-600 text-center mt-10 mb-6">
         Food Donation Process
       </p>
 
@@ -169,7 +169,7 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-      <footer className="w-full bg-blood text-white-900 mt-10 py-3 text-center font-bold text-sm">
+      <footer className="w-full bg-green-600 text-white-900 mt-10 py-3 text-center font-bold text-sm">
         <code>FoodLink © {new Date().getFullYear()} — Made by Aditya</code>
       </footer>
     </div>
