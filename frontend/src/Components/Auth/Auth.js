@@ -10,18 +10,24 @@ const Auth = () => {
   const { getLoggedIn } = useContext(AuthContext);
 
   // Common fields
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   
-  // Registration-only fields
+  // Registration-only fields (all users)
   const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
   const [state, setState] = useState(0);
   const [district, setDistrict] = useState(0);
   const [address, setAddress] = useState("");
   
+  // User-specific fields (donor/receiver)
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("Male");
+  const [foodGroup, setFoodGroup] = useState("Non-Perishable Food");
+  
   // Bank-specific fields
+  const [email, setEmail] = useState("");
   const [hospital, setHospital] = useState("");
+  const [category, setCategory] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
@@ -32,6 +38,15 @@ const Auth = () => {
   const isBank = handle === "bank";
   const isDonor = handle === "donor";
   const isReceiver = handle === "receiver";
+
+  // Food groups for user registration
+  const foodGroups = [
+    "Non-Perishable Food",
+    "Perishable Food",
+    "Prepared Food",
+    "Baby Food and Formula",
+    "Snacks and Beverages",
+  ];
 
   // Get title based on type and handle
   const getTitle = () => {
@@ -56,17 +71,25 @@ const Auth = () => {
 
     try {
       const formData = {
-        email,
+        phone,
         password,
         ...((!isLogin) && {
           name,
-          contact,
           state: data.states[state].state,
           district: data.states[state].districts[district],
           address,
         }),
+        ...((!isLogin && !isBank) && {
+          // User-specific fields (donor/receiver)
+          age: parseInt(age),
+          gender,
+          foodGroup,
+        }),
         ...((!isLogin && isBank) && {
+          // Bank-specific fields
+          email,
           hospital,
+          category,
           latitude: parseFloat(latitude),
           longitude: parseFloat(longitude),
         }),
@@ -146,17 +169,115 @@ const Auth = () => {
 
                 <div className="space-y-2">
                   <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                    Contact Number
+                    Phone Number
                   </label>
                   <input
                     type="tel"
                     className="input-field"
                     placeholder="10-digit mobile number"
-                    value={contact}
-                    onChange={(e) => setContact(e.target.value)}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     required
                   />
                 </div>
+
+                {/* User-specific fields (donors and receivers only) */}
+                {!isBank && (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                          Age
+                        </label>
+                        <input
+                          type="number"
+                          className="input-field"
+                          placeholder="Enter your age"
+                          value={age}
+                          onChange={(e) => setAge(e.target.value)}
+                          min="1"
+                          max="120"
+                          required
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                          Gender
+                        </label>
+                        <div className="relative">
+                          <select
+                            className="input-field appearance-none pr-10"
+                            value={gender}
+                            onChange={(e) => setGender(e.target.value)}
+                            required
+                          >
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </select>
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                            <i className="fa-solid fa-chevron-down text-xs"></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                          Food Group
+                        </label>
+                        <div className="relative">
+                          <select
+                            className="input-field appearance-none pr-10"
+                            value={foodGroup}
+                            onChange={(e) => setFoodGroup(e.target.value)}
+                            required
+                          >
+                            {foodGroups.map((group, i) => (
+                              <option key={i} value={group}>{group}</option>
+                            ))}
+                          </select>
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                            <i className="fa-solid fa-chevron-down text-xs"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Bank-specific fields */}
+                {isBank && (
+                  <>
+                    <div className="space-y-2">
+                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        className="input-field"
+                        placeholder="Enter official email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                        Category
+                      </label>
+                      <input
+                        type="text"
+                        className="input-field"
+                        placeholder="e.g., Community Food Bank, Hospital, NGO"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -253,21 +374,6 @@ const Auth = () => {
                 )}
               </>
             )}
-
-            {/* Email */}
-            <div className="space-y-2">
-              <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                Email Address
-              </label>
-              <input
-                type="email"
-                className="input-field"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
 
             {/* Password */}
             <div className="space-y-2">
