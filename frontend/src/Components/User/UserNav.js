@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 // Main UserNav component
 const UserNav = ({ data }) => {
   return (
-    <nav className="h-full flex flex-col py-8 px-4 space-y-2 glass dark:glass-dark border-r border-white/10 shadow-premium">
+    <nav className="h-full flex flex-col py-8 px-4 space-y-2 glass dark:glass-dark border-r border-white-900/10 shadow-premium">
       <div className="px-4 mb-10">
         <h2 className="text-xs font-bold text-secondary-400 uppercase tracking-[0.2em]">Dashboard</h2>
       </div>
@@ -17,7 +17,7 @@ const UserNav = ({ data }) => {
             className={({ isActive }) =>
               `flex items-center space-x-4 px-4 py-3.5 rounded-2xl transition-all duration-300 group ${
                 isActive
-                  ? "bg-primary-600 text-white shadow-lg shadow-primary-500/30 translate-x-1"
+                  ? "bg-primary-600 text-white-900 shadow-lg shadow-primary-500/30 translate-x-1"
                   : "text-secondary-600 dark:text-white-400 hover:bg-primary-50 dark:hover:bg-primary-900/10 hover:text-primary-600"
               }`
             }

@@ -45,7 +45,7 @@ const History = (props) => {
     <div className="w-full space-y-8 animate-fade-in">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h2 className="text-3xl font-display font-bold text-secondary-900 dark:text-white">
+          <h2 className="text-3xl font-display font-bold text-secondary-900 dark:text-white-900">
             {props.handle === "donations" ? "Donation History" : "Request History"}
           </h2>
           <p className="text-secondary-500 font-medium mt-1">
@@ -53,7 +53,7 @@ const History = (props) => {
           </p>
         </div>
 
-        <div className="flex items-center space-x-4 glass dark:glass-dark px-4 py-2 rounded-2xl border border-white/20 shadow-sm">
+        <div className="flex items-center space-x-4 glass dark:glass-dark px-4 py-2 rounded-2xl border border-white-900/20 shadow-sm">
           <span className="text-xs font-bold text-secondary-400 uppercase tracking-widest">Filter:</span>
           <div className="relative">
             <select
@@ -61,7 +61,7 @@ const History = (props) => {
               id="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="bg-transparent border-none text-sm font-bold text-secondary-700 dark:text-white focus:ring-0 cursor-pointer pr-8 appearance-none"
+              className="bg-transparent border-none text-sm font-bold text-secondary-700 dark:text-white-900 focus:ring-0 cursor-pointer pr-8 appearance-none"
             >
               {choices.map((e) => (
                 <option key={e} value={e} className="dark:bg-secondary-900">{e}</option>
@@ -74,11 +74,11 @@ const History = (props) => {
         </div>
       </div>
 
-      <div className="glass dark:glass-dark rounded-[2.5rem] border border-white/20 shadow-premium overflow-hidden">
+      <div className="glass dark:glass-dark rounded-[2.5rem] border border-white-900/20 shadow-premium overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b border-secondary-100 dark:border-secondary-800 bg-secondary-50/30 dark:bg-white/5">
+              <tr className="border-b border-secondary-100 dark:border-secondary-800 bg-secondary-50/30 dark:bg-white-100/5">
                 {props.user === "bank" ? (
                   <>
                     <th className="px-6 py-5 text-xs font-bold text-secondary-400 uppercase tracking-widest">Beneficiary</th>
@@ -108,7 +108,7 @@ const History = (props) => {
                         <td className="px-6 py-5">
                             <button 
                                 onClick={() => setPopup(i)}
-                                className="flex items-center space-x-3 text-secondary-900 dark:text-white hover:text-primary-600 transition-colors"
+                                className="flex items-center space-x-3 text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors"
                             >
                                 <div className="h-10 w-10 rounded-xl bg-secondary-100 dark:bg-secondary-800 flex items-center justify-center font-bold text-sm">
                                     {(props.handle === "donations" ? e.userId.name : e.name).charAt(0)}
@@ -124,7 +124,7 @@ const History = (props) => {
                             </span>
                         </td>
                         <td className="px-6 py-5 text-center">
-                            <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-secondary-100 dark:bg-secondary-800 text-secondary-900 dark:text-white font-bold text-xs">
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-secondary-100 dark:bg-secondary-800 text-secondary-900 dark:text-white-900 font-bold text-xs">
                                 {e.units}kg
                             </span>
                         </td>
@@ -139,7 +139,7 @@ const History = (props) => {
                             </p>
                         </td>
                         <td className="px-6 py-5">
-                            <div className="text-xs font-bold text-secondary-900 dark:text-white">
+                            <div className="text-xs font-bold text-secondary-900 dark:text-white-900">
                                 {e.date.split(" ")[2]}
                             </div>
                             <div className="text-[10px] text-secondary-400 font-mono mt-0.5">
@@ -176,7 +176,7 @@ const History = (props) => {
                         <td className="px-6 py-5">
                             <div className="flex items-center space-x-2">
                                 <i className="fa-regular fa-calendar text-primary-500"></i>
-                                <div className="text-xs font-bold text-secondary-900 dark:text-white">
+                                <div className="text-xs font-bold text-secondary-900 dark:text-white-900">
                                     {e.date.split(" ")[2]} <span className="text-secondary-400 font-normal ml-1 text-[10px]">{e.date.split(" ")[0]} {e.date.split(" ")[1]}</span>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ const History = (props) => {
                         <td className="px-6 py-5">
                             <button 
                                 onClick={() => setPopup(i)}
-                                className="flex items-center space-x-2 text-secondary-900 dark:text-white hover:text-primary-600 transition-colors group/bank"
+                                className="flex items-center space-x-2 text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors group/bank"
                             >
                                 <div className="h-8 w-8 rounded-lg bg-secondary-100 dark:bg-secondary-800 flex items-center justify-center text-xs group-hover/bank:bg-primary-100 group-hover/bank:text-primary-600 transition-colors">
                                     <i className="fa-solid fa-building-columns"></i>
@@ -220,7 +220,7 @@ const History = (props) => {
                                 <i className="fa-solid fa-hourglass-empty"></i>
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-secondary-900 dark:text-white">No entries found</h3>
+                                <h3 className="text-xl font-bold text-secondary-900 dark:text-white-900">No entries found</h3>
                                 <p className="text-secondary-500 text-sm">There are no {props.handle} matching the "{status}" status.</p>
                             </div>
                         </div>

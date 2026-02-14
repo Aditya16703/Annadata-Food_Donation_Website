@@ -25,18 +25,18 @@ const About = () => {
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 my-12">
-              <div className="p-6 rounded-3xl bg-white/50 dark:bg-secondary-800/50 border border-secondary-100 dark:border-secondary-700">
+              <div className="p-6 rounded-3xl bg-white-100/50 dark:bg-secondary-800/50 border border-secondary-100 dark:border-secondary-700">
                 <div className="h-10 w-10 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center mb-4">
                   <i className="fa-solid fa-shield-check"></i>
                 </div>
-                <h3 className="font-display font-bold text-secondary-900 dark:text-white mb-2">Accountability</h3>
+                <h3 className="font-display font-bold text-secondary-900 dark:text-white-900 mb-2">Accountability</h3>
                 <p className="text-sm text-secondary-500 dark:text-white-400">Secure authentication ensures every donation is tracked and verified.</p>
               </div>
-              <div className="p-6 rounded-3xl bg-white/50 dark:bg-secondary-800/50 border border-secondary-100 dark:border-secondary-700">
+              <div className="p-6 rounded-3xl bg-white-100/50 dark:bg-secondary-800/50 border border-secondary-100 dark:border-secondary-700">
                 <div className="h-10 w-10 bg-success/10 text-success rounded-xl flex items-center justify-center mb-4">
                   <i className="fa-solid fa-bolt"></i>
                 </div>
-                <h3 className="font-display font-bold text-secondary-900 dark:text-white mb-2">Real-time Impact</h3>
+                <h3 className="font-display font-bold text-secondary-900 dark:text-white-900 mb-2">Real-time Impact</h3>
                 <p className="text-sm text-secondary-500 dark:text-white-400">Connecting donors and NGOs instantly to minimize food waste.</p>
               </div>
             </div>

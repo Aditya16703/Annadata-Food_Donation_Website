@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import bg from "../../assets/bgstart1.jpg";
 import bg2 from "../../assets/food2.jpg";
 import donationFact from "../../assets/abc.jpg";
@@ -70,7 +71,7 @@ const Home = () => {
             <img 
               src={bg} 
               alt="Food Donation Banner" 
-              className="w-full h-[450px] object-cover rounded-[2rem] shadow-2xl border-4 border-white dark:border-secondary-800 transform transition-transform hover:-rotate-1 duration-700" 
+              className="w-full h-[450px] object-cover rounded-[2rem] shadow-2xl border-4 border-white-900 dark:border-secondary-800 transform transition-transform hover:-rotate-1 duration-700" 
             />
             {/* Floating Badge */}
             <div className="absolute -bottom-6 -left-6 glass p-4 rounded-2xl flex items-center space-x-3 animate-bounce shadow-premium">
@@ -87,7 +88,7 @@ const Home = () => {
       </div>
 
       {/* Quote Section */}
-      <div className="bg-white dark:bg-secondary-900 border-y border-secondary-100 dark:border-secondary-800 py-16 px-6">
+      <div className="bg-white-100 dark:bg-secondary-900 border-y border-secondary-100 dark:border-secondary-800 py-16 px-6">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <div className="inline-block p-1 px-3 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold uppercase tracking-widest rounded-full mb-6 italic">
             Mission Statement
@@ -126,16 +127,16 @@ const Home = () => {
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-primary-600">
-                    <th colSpan={2} className="px-6 py-4 text-white font-display font-bold text-center">
+                    <th colSpan={2} className="px-6 py-4 text-white-900 font-display font-bold text-center">
                       Compatible Food Types
                     </th>
                   </tr>
                   <tr className="bg-secondary-50 dark:bg-secondary-800 border-b border-secondary-100 dark:border-secondary-700">
-                    <th className="px-6 py-4 text-secondary-900 dark:text-white font-bold text-sm uppercase tracking-wider">Food Categories</th>
-                    <th className="px-6 py-4 text-secondary-900 dark:text-white font-bold text-sm uppercase tracking-wider">Examples</th>
+                    <th className="px-6 py-4 text-secondary-900 dark:text-white-900 font-bold text-sm uppercase tracking-wider">Food Categories</th>
+                    <th className="px-6 py-4 text-secondary-900 dark:text-white-900 font-bold text-sm uppercase tracking-wider">Examples</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-secondary-100 dark:divide-secondary-800 bg-white dark:bg-secondary-900">
+                <tbody className="divide-y divide-secondary-100 dark:divide-secondary-800 bg-white-100 dark:bg-secondary-900">
                   {foodTypes.map((item, index) => (
                     <tr key={index} className="hover:bg-primary-50/30 dark:hover:bg-primary-900/10 transition-colors">
                       <td className="px-6 py-4 font-bold text-secondary-900 dark:text-white-300 text-sm whitespace-nowrap">{item.food}</td>
@@ -163,7 +164,7 @@ const Home = () => {
             {donationSteps.map((step, index) => (
               <div
                 key={index}
-                className="group relative bg-white dark:bg-secondary-900 rounded-[2rem] overflow-hidden border border-secondary-100 dark:border-secondary-800 shadow-premium transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-fade-in"
+                className="group relative bg-white-100 dark:bg-secondary-900 rounded-[2rem] overflow-hidden border border-secondary-100 dark:border-secondary-800 shadow-premium transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <div className="flex flex-col md:flex-row h-full">
@@ -174,7 +175,7 @@ const Home = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       alt={step.title}
                     />
-                    <div className="absolute top-4 left-4 bg-primary-600 text-white font-display font-bold h-10 w-10 flex items-center justify-center rounded-xl shadow-lg">
+                    <div className="absolute top-4 left-4 bg-primary-600 text-white-900 font-display font-bold h-10 w-10 flex items-center justify-center rounded-xl shadow-lg">
                       {index + 1}
                     </div>
                   </div>
@@ -205,7 +206,7 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-secondary-900 border-t border-secondary-100 dark:border-secondary-800 py-12 px-6">
+      <footer className="bg-white-100 dark:bg-secondary-900 border-t border-secondary-100 dark:border-secondary-800 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center">
             <div className="text-2xl font-display font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">

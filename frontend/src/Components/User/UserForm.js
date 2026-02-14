@@ -87,7 +87,7 @@ const UserForm = () => {
   return (
     <div className="w-full max-w-5xl mx-auto py-8">
       <div className="mb-12">
-        <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">
+        <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white-900 mb-2">
             {handle === "donate" ? "Donate Food" : "Request Support"}
         </h1>
         <p className="text-secondary-500 font-medium">
@@ -108,11 +108,11 @@ const UserForm = () => {
           handle === "donate" ? donate() : request();
         }}
       >
-        <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-12 border border-white/20 shadow-premium">
+        <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-12 border border-white-900/20 shadow-premium">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
             <div className="flex items-center space-x-4">
                 <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
-                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">
                     {handle === "donate" ? "Donation" : "Beneficiary"} Information
                 </h3>
             </div>
@@ -126,7 +126,7 @@ const UserForm = () => {
                         checked={me}
                         onChange={() => setMe(!me)}
                     />
-                    <div className="w-11 h-6 bg-secondary-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                    <div className="w-11 h-6 bg-secondary-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white-100 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
                 </div>
                 <span className="text-sm font-bold text-secondary-600 dark:text-white-400 group-hover:text-primary-600 transition-colors">Apply for myself</span>
               </label>
@@ -247,10 +247,10 @@ const UserForm = () => {
         </div>
 
         {/* Location & Bank Selection */}
-        <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-12 border border-white/20 shadow-premium">
+        <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-12 border border-white-900/20 shadow-premium">
             <div className="flex items-center space-x-4 mb-10">
                 <div className="h-10 w-1 bg-success rounded-full"></div>
-                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Select Target Food Bank</h3>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Select Target Food Bank</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
@@ -294,7 +294,7 @@ const UserForm = () => {
                 </div>
             </div>
 
-            <div className="bg-white/50 dark:bg-black/50 rounded-3xl p-6 border border-white/10">
+            <div className="bg-white-100/50 dark:bg-black/50 rounded-3xl p-6 border border-white-900/10">
                 <BanksSearch
                     state={data.states[state].state}
                     district={data.states[state].districts[district]}

@@ -12,16 +12,16 @@ const CampsCheck = (props) => {
   })();
 
   return (
-    <div className="group/donor glass dark:glass-dark rounded-[2rem] p-6 border border-white/20 shadow-premium hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-300 relative overflow-hidden">
+    <div className="group/donor glass dark:glass-dark rounded-[2rem] p-6 border border-white-900/20 shadow-premium hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-300 relative overflow-hidden">
       {/* Status Badge */}
       <div className={`absolute top-4 right-4 h-2 w-2 rounded-full ${status === 1 ? 'bg-success shadow-[0_0_10px_rgba(34,197,94,0.5)]' : 'bg-warning animate-pulse'}`}></div>
       
       <div className="flex items-center space-x-4 mb-6">
-        <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary-400 to-secondary-500 flex items-center justify-center text-white text-xl shadow-lg">
+        <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary-400 to-secondary-500 flex items-center justify-center text-white-900 text-xl shadow-lg">
             {props.data._id.name.charAt(0)}
         </div>
         <div>
-            <h4 className="text-sm font-black text-secondary-900 dark:text-white uppercase tracking-tight">{props.data._id.name}</h4>
+            <h4 className="text-sm font-black text-secondary-900 dark:text-white-900 uppercase tracking-tight">{props.data._id.name}</h4>
             <div className="flex items-center space-x-2 mt-0.5">
                 <span className="text-[10px] font-bold text-primary-600 bg-primary-100/50 dark:bg-primary-900/20 px-2 py-0.5 rounded-full uppercase tracking-widest">
                     {props.data._id.age} Yrs
@@ -34,12 +34,12 @@ const CampsCheck = (props) => {
       </div>
 
       <div className="space-y-4">
-        <div className="flex justify-between items-end p-4 bg-secondary-50/50 dark:bg-white/5 rounded-2xl border border-secondary-100 dark:border-secondary-800">
+        <div className="flex justify-between items-end p-4 bg-secondary-50/50 dark:bg-white-100/5 rounded-2xl border border-secondary-100 dark:border-secondary-800">
             <div>
                 <span className="text-[9px] font-black text-secondary-400 uppercase tracking-widest block mb-1">Stock Contribution</span>
                 <div className="flex items-baseline space-x-1">
                     {edit ? (
-                        <span className="text-xl font-black text-secondary-900 dark:text-white">{props.data.units}</span>
+                        <span className="text-xl font-black text-secondary-900 dark:text-white-900">{props.data.units}</span>
                     ) : (
                         <input
                             type="number"
@@ -70,7 +70,7 @@ const CampsCheck = (props) => {
                         {status === 0 && (
                             <button 
                                 onClick={() => setEdit(false)}
-                                className="h-8 w-8 rounded-lg bg-primary-100/50 dark:bg-primary-900/20 text-primary-600 hover:bg-primary-500 hover:text-white transition-all flex items-center justify-center"
+                                className="h-8 w-8 rounded-lg bg-primary-100/50 dark:bg-primary-900/20 text-primary-600 hover:bg-primary-500 hover:text-white-900 transition-all flex items-center justify-center"
                             >
                                 <i className="fa-solid fa-pen-to-square text-sm"></i>
                             </button>
@@ -98,13 +98,13 @@ const CampsCheck = (props) => {
                                         alert("Logistics failure while updating donor metrics");
                                     });
                             }}
-                            className="h-8 w-8 rounded-lg bg-success text-white hover:bg-success/80 transition-all shadow-lg shadow-success/20 flex items-center justify-center"
+                            className="h-8 w-8 rounded-lg bg-success text-white-900 hover:bg-success/80 transition-all shadow-lg shadow-success/20 flex items-center justify-center"
                         >
                             <i className="fa-solid fa-check text-sm"></i>
                         </button>
                         <button 
                             onClick={() => setEdit(true)}
-                            className="h-8 w-8 rounded-lg bg-error/10 text-error hover:bg-error hover:text-white transition-all flex items-center justify-center"
+                            className="h-8 w-8 rounded-lg bg-error/10 text-error hover:bg-error hover:text-white-900 transition-all flex items-center justify-center"
                         >
                             <i className="fa-solid fa-xmark text-sm"></i>
                         </button>

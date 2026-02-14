@@ -21,7 +21,7 @@ const Stock = () => {
     <div className="w-full space-y-10 animate-fade-in">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h2 className="text-3xl font-display font-bold text-secondary-900 dark:text-white">Inventory Management</h2>
+          <h2 className="text-3xl font-display font-bold text-secondary-900 dark:text-white-900">Inventory Management</h2>
           <p className="text-secondary-500 font-medium mt-1">Real-time stock levels of verified food categories.</p>
         </div>
         <div className="flex items-center space-x-3 bg-success/10 text-success px-6 py-2.5 rounded-2xl border border-success/20 font-bold text-sm">
@@ -46,13 +46,13 @@ const Stock = () => {
             return (
               <div 
                 key={e} 
-                className="group glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-500 overflow-hidden relative"
+                className="group glass dark:glass-dark rounded-[2.5rem] p-8 border border-white-900/20 shadow-premium hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-500 overflow-hidden relative"
               >
                 {/* Background Accent */}
                 <div className={`absolute -right-10 -top-10 h-32 w-32 bg-gradient-to-br ${colorClass} opacity-[0.03] group-hover:opacity-[0.08] rounded-full blur-2xl transition-opacity`}></div>
                 
                 <div className="relative flex flex-col items-center text-center">
-                    <div className={`h-20 w-20 rounded-[1.8rem] bg-gradient-to-br ${colorClass} flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-500 mb-6`}>
+                    <div className={`h-20 w-20 rounded-[1.8rem] bg-gradient-to-br ${colorClass} flex items-center justify-center text-white-900 text-3xl shadow-lg group-hover:scale-110 transition-transform duration-500 mb-6`}>
                          <i className={`fa-solid ${
                              e.toLowerCase().includes('grain') ? 'fa-wheat-awn' : 
                              e.toLowerCase().includes('veg') ? 'fa-leaf' :
@@ -64,7 +64,7 @@ const Stock = () => {
 
                     <div className="space-y-1">
                         <code className="text-[10px] font-black tracking-[0.2em] text-secondary-400 uppercase">{e}</code>
-                        <h3 className="text-4xl font-display font-black text-secondary-900 dark:text-white">
+                        <h3 className="text-4xl font-display font-black text-secondary-900 dark:text-white-900">
                             {data[e]}<span className="text-lg font-medium ml-1">kg</span>
                         </h3>
                     </div>

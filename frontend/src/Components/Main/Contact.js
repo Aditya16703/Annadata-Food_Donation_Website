@@ -37,8 +37,8 @@ const Contact = () => {
           {/* Contact Info Section */}
           <div className="flex-1 space-y-6">
             {data.map((section, i) => (
-              <div key={i} className="glass dark:glass-dark rounded-[2rem] p-8 shadow-premium border border-white/10 group hover:-translate-y-1 transition-all duration-300">
-                <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white mb-4 group-hover:text-primary-600 transition-colors">
+              <div key={i} className="glass dark:glass-dark rounded-[2rem] p-8 shadow-premium border border-white-900/10 group hover:-translate-y-1 transition-all duration-300">
+                <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white-900 mb-4 group-hover:text-primary-600 transition-colors">
                   {section.title}
                 </h3>
                 <div className="space-y-3">
@@ -59,7 +59,7 @@ const Contact = () => {
             <img
               src={cc}
               draggable={false}
-              className="relative rounded-[2.5rem] w-full h-full object-cover shadow-2xl border-4 border-white dark:border-secondary-800 transition-transform duration-700 group-hover:scale-[1.02]"
+              className="relative rounded-[2.5rem] w-full h-full object-cover shadow-2xl border-4 border-white-900 dark:border-secondary-800 transition-transform duration-700 group-hover:scale-[1.02]"
               alt="Contact Office"
             />
             {/* Overlay Gradient */}

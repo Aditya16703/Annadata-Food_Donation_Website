@@ -34,12 +34,12 @@ const Popup = ({ popup, setPopup, data, handle }) => {
         onClick={() => setPopup(-1)}
       ></div>
       
-      <div className="relative w-full max-w-4xl glass dark:glass-dark rounded-[3rem] shadow-premium border border-white/20 overflow-hidden animate-scale-in">
+      <div className="relative w-full max-w-4xl glass dark:glass-dark rounded-[3rem] shadow-premium border border-white-900/20 overflow-hidden animate-scale-in">
         <div className="flex justify-between items-center p-8 border-b border-secondary-100 dark:border-secondary-800">
           <div className="flex items-center space-x-4">
             <div className="h-12 w-1 bg-primary-600 rounded-full"></div>
             <div>
-                <h1 className="text-2xl font-display font-bold text-secondary-900 dark:text-white">{handle} Profile</h1>
+                <h1 className="text-2xl font-display font-bold text-secondary-900 dark:text-white-900">{handle} Profile</h1>
                 <p className="text-xs font-bold text-secondary-400 uppercase tracking-widest mt-0.5">Verified Entity Details</p>
             </div>
           </div>
@@ -58,11 +58,11 @@ const Popup = ({ popup, setPopup, data, handle }) => {
                     {Object.keys(data).map((key) => {
                         if (["_id", "longitude", "latitude", "__v", "password", "history"].includes(key.toLowerCase())) return null;
                         return (
-                            <div key={key} className="p-4 rounded-2xl bg-secondary-50/50 dark:bg-white/5 border border-secondary-100 dark:border-secondary-800">
+                            <div key={key} className="p-4 rounded-2xl bg-secondary-50/50 dark:bg-white-100/5 border border-secondary-100 dark:border-secondary-800">
                                 <span className="text-[10px] font-black text-primary-600 uppercase tracking-widest block mb-1">
                                     {key.replace(/([A-Z])/g, ' $1').trim()}
                                 </span>
-                                <span className="text-secondary-900 dark:text-white font-bold">
+                                <span className="text-secondary-900 dark:text-white-900 font-bold">
                                     {data[key] || "---"}
                                 </span>
                             </div>
@@ -79,7 +79,7 @@ const Popup = ({ popup, setPopup, data, handle }) => {
                             <span className="text-xs font-bold uppercase tracking-wider">Geographical Location</span>
                         </div>
                         <div className="relative group">
-                            <div ref={mapContainer} className="w-full h-[320px] rounded-[2rem] border-4 border-white dark:border-secondary-800 shadow-xl overflow-hidden"></div>
+                            <div ref={mapContainer} className="w-full h-[320px] rounded-[2rem] border-4 border-white-900 dark:border-secondary-800 shadow-xl overflow-hidden"></div>
                             <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-black/10 pointer-events-none"></div>
                         </div>
                         <div className="p-4 bg-primary-50 dark:bg-primary-900/10 rounded-2xl border border-primary-100 dark:border-primary-900/30">
@@ -103,7 +103,7 @@ const Popup = ({ popup, setPopup, data, handle }) => {
           </div>
         </div>
         
-        <div className="p-6 bg-secondary-50/50 dark:bg-white/5 border-t border-secondary-100 dark:border-secondary-800 text-center">
+        <div className="p-6 bg-secondary-50/50 dark:bg-white-100/5 border-t border-secondary-100 dark:border-secondary-800 text-center">
             <p className="text-[10px] font-bold text-secondary-400 uppercase tracking-[0.2em]">Annadata Secure Transparency System • 2024</p>
         </div>
       </div>

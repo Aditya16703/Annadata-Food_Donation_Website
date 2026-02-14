@@ -36,7 +36,7 @@ const BanksSearch = ({ state, district, setBank }) => {
                 className={`group relative overflow-hidden rounded-3xl border transition-all duration-300 cursor-pointer ${
                   isSelected
                     ? "bg-primary-600 border-primary-500 shadow-xl shadow-primary-500/20 translate-y-[-4px]"
-                    : "bg-white/40 dark:bg-secondary-900/40 border-white/20 hover:border-primary-500/50 hover:bg-white/60 dark:hover:bg-secondary-900/60"
+                    : "bg-white-100/40 dark:bg-secondary-900/40 border-white-900/20 hover:border-primary-500/50 hover:bg-white-100/60 dark:hover:bg-secondary-900/60"
                 }`}
               >
                 <div className="p-6">
@@ -51,14 +51,14 @@ const BanksSearch = ({ state, district, setBank }) => {
                           setPopup(i);
                         }}
                         className={`h-8 w-8 rounded-lg flex items-center justify-center transition-colors ${
-                          isSelected ? "text-white/80 hover:text-white" : "text-secondary-400 hover:text-primary-600"
+                          isSelected ? "text-white-900/80 hover:text-white-900" : "text-secondary-400 hover:text-primary-600"
                         }`}
                       >
                         <i className="fa-solid fa-circle-info text-lg"></i>
                       </button>
                       <div className={`h-6 w-6 rounded-full border-2 flex items-center justify-center transition-all ${
                         isSelected 
-                          ? "bg-white border-white text-primary-600 scale-110" 
+                          ? "bg-white-100 border-white-900 text-primary-600 scale-110" 
                           : "border-secondary-300 dark:border-secondary-700"
                       }`}>
                         {isSelected && <i className="fa-solid fa-check text-[10px] font-black"></i>}
@@ -67,14 +67,14 @@ const BanksSearch = ({ state, district, setBank }) => {
                   </div>
 
                   <div>
-                    <h4 className={`text-lg font-bold transition-colors ${isSelected ? "text-white" : "text-secondary-900 dark:text-white"}`}>
+                    <h4 className={`text-lg font-bold transition-colors ${isSelected ? "text-white-900" : "text-secondary-900 dark:text-white-900"}`}>
                       {bank.name}
                     </h4>
-                    <p className={`text-xs font-medium mt-1 transition-colors ${isSelected ? "text-white/80" : "text-secondary-500 dark:text-white-400"}`}>
+                    <p className={`text-xs font-medium mt-1 transition-colors ${isSelected ? "text-white-900/80" : "text-secondary-500 dark:text-white-400"}`}>
                         {bank.organisation} • <span className="uppercase tracking-wider">{bank.category}</span>
                     </p>
                     <div className={`mt-4 pt-4 border-t flex items-start space-x-2 transition-colors ${
-                        isSelected ? "border-white/10 text-white/70" : "border-secondary-100 dark:border-secondary-800 text-secondary-500 dark:text-white-400"
+                        isSelected ? "border-white-900/10 text-white-900/70" : "border-secondary-100 dark:border-secondary-800 text-secondary-500 dark:text-white-400"
                     }`}>
                         <i className="fa-solid fa-location-dot mt-0.5 text-[10px]"></i>
                         <span className="text-xs leading-relaxed line-clamp-2">{bank.address}</span>
@@ -84,7 +84,7 @@ const BanksSearch = ({ state, district, setBank }) => {
 
                 {/* Decorative background element for selected state */}
                 {isSelected && (
-                    <div className="absolute -right-4 -bottom-4 h-24 w-24 bg-white/10 rounded-full blur-2xl"></div>
+                    <div className="absolute -right-4 -bottom-4 h-24 w-24 bg-white-100/10 rounded-full blur-2xl"></div>
                 )}
               </div>
             );

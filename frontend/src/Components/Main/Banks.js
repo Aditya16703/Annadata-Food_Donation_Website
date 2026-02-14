@@ -33,7 +33,7 @@ const Banks = () => {
         </div>
 
         {/* Filter Section */}
-        <div className="glass dark:glass-dark rounded-3xl p-8 mb-12 shadow-premium border border-white/20">
+        <div className="glass dark:glass-dark rounded-3xl p-8 mb-12 shadow-premium border border-white-900/20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
               <label htmlFor="state" className="text-sm font-bold text-secondary-700 dark:text-white-300 uppercase tracking-wider ml-1">
@@ -47,7 +47,7 @@ const Banks = () => {
                     setState(Number(e.target.value));
                     setDistrict(0);
                   }}
-                  className="input-field appearance-none pr-10 cursor-pointer dark:bg-secondary-900 dark:text-white dark:border-secondary-700 font-sans"
+                  className="input-field appearance-none pr-10 cursor-pointer dark:bg-secondary-900 dark:text-white-900 dark:border-secondary-700 font-sans"
                 >
                   {data.states.map((s, i) => (
                     <option key={i} value={i}>
@@ -70,7 +70,7 @@ const Banks = () => {
                   id="district"
                   value={district}
                   onChange={(e) => setDistrict(Number(e.target.value))}
-                  className="input-field appearance-none pr-10 cursor-pointer dark:bg-secondary-900 dark:text-white dark:border-secondary-700 font-sans"
+                  className="input-field appearance-none pr-10 cursor-pointer dark:bg-secondary-900 dark:text-white-900 dark:border-secondary-700 font-sans"
                 >
                   {data.states[state].districts.map((d, i) => (
                     <option key={i} value={i}>
@@ -87,13 +87,13 @@ const Banks = () => {
         </div>
 
         {/* Data Table */}
-        <div className="glass dark:glass-dark rounded-[2rem] overflow-hidden shadow-premium border border-white/10">
+        <div className="glass dark:glass-dark rounded-[2rem] overflow-hidden shadow-premium border border-white-900/10">
           {error ? (
             <div className="p-20 text-center">
               <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-error/10 text-error mb-4">
                 <i className="fa-solid fa-circle-exclamation text-2xl"></i>
               </div>
-              <p className="text-secondary-900 dark:text-white font-bold">{error}</p>
+              <p className="text-secondary-900 dark:text-white-900 font-bold">{error}</p>
             </div>
           ) : filtered.length === 0 ? (
             <div className="p-20 text-center">
@@ -121,11 +121,11 @@ const Banks = () => {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-secondary-100 dark:divide-secondary-800 bg-white dark:bg-secondary-900">
+                <tbody className="divide-y divide-secondary-100 dark:divide-secondary-800 bg-white-100 dark:bg-secondary-900">
                   {filtered.map((e, i) => (
                     <tr key={i} className="hover:bg-primary-50/30 dark:hover:bg-primary-900/10 transition-colors group">
                       <td className="px-6 py-5 first:pl-8">
-                        <p className="font-bold text-secondary-900 dark:text-white group-hover:text-primary-600 transition-colors">{e.name}</p>
+                        <p className="font-bold text-secondary-900 dark:text-white-900 group-hover:text-primary-600 transition-colors">{e.name}</p>
                         <p className="text-xs text-secondary-400 mt-1">{e.organisation}</p>
                       </td>
                       <td className="px-6 py-5">

@@ -51,7 +51,7 @@ const AboutDonation = () => {
           <div className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold uppercase tracking-widest rounded-full mb-4">
             Our Workflow
           </div>
-          <h1 className="text-5xl font-display font-bold text-secondary-900 dark:text-white leading-tight">
+          <h1 className="text-5xl font-display font-bold text-secondary-900 dark:text-white-900 leading-tight">
             The Journey of <span className="text-primary-600">Kindness</span>
           </h1>
           <p className="mt-6 text-secondary-500 max-w-2xl mx-auto font-medium">
@@ -64,7 +64,7 @@ const AboutDonation = () => {
           {data.map((e, i) => (
             <div
               key={i}
-              className="group glass dark:glass-dark rounded-[3rem] overflow-hidden border border-white/20 shadow-premium hover:shadow-2xl transition-all duration-500 flex flex-col lg:flex-row"
+              className="group glass dark:glass-dark rounded-[3rem] overflow-hidden border border-white-900/20 shadow-premium hover:shadow-2xl transition-all duration-500 flex flex-col lg:flex-row"
             >
               <div className="lg:w-2/5 relative overflow-hidden">
                 <img
@@ -74,13 +74,13 @@ const AboutDonation = () => {
                   alt={e.title}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/40 to-transparent"></div>
-                <div className="absolute top-6 left-6 h-12 w-12 rounded-2xl bg-white/90 dark:bg-secondary-900/90 backdrop-blur-md flex items-center justify-center text-secondary-900 dark:text-white font-black text-2xl shadow-lg">
+                <div className="absolute top-6 left-6 h-12 w-12 rounded-2xl bg-white-100/90 dark:bg-secondary-900/90 backdrop-blur-md flex items-center justify-center text-secondary-900 dark:text-white-900 font-black text-2xl shadow-lg">
                   0{i + 1}
                 </div>
               </div>
               
               <div className="lg:w-3/5 p-8 lg:p-12 flex flex-col justify-center">
-                <h3 className="text-2xl font-display font-bold text-secondary-900 dark:text-white mb-4 group-hover:text-primary-600 transition-colors">
+                <h3 className="text-2xl font-display font-bold text-secondary-900 dark:text-white-900 mb-4 group-hover:text-primary-600 transition-colors">
                   {e.title}
                 </h3>
                 <p className="text-secondary-500 dark:text-secondary-400 leading-relaxed font-medium">
@@ -95,13 +95,13 @@ const AboutDonation = () => {
           ))}
         </div>
 
-        <div className="mt-24 p-12 glass dark:glass-dark rounded-[4rem] border border-white/20 text-center relative overflow-hidden">
+        <div className="mt-24 p-12 glass dark:glass-dark rounded-[4rem] border border-white-900/20 text-center relative overflow-hidden">
              <div className="absolute -top-24 -right-24 h-64 w-64 bg-primary-500/10 rounded-full blur-3xl"></div>
              <div className="absolute -bottom-24 -left-24 h-64 w-64 bg-success-500/10 rounded-full blur-3xl"></div>
              
-             <h2 className="text-3xl font-display font-bold text-secondary-900 dark:text-white mb-4">Ready to start saving lives?</h2>
+             <h2 className="text-3xl font-display font-bold text-secondary-900 dark:text-white-900 mb-4">Ready to start saving lives?</h2>
              <p className="text-secondary-500 font-medium mb-8 max-w-xl mx-auto">Your surplus can be someone's sustenance. Join our network of institutional and individual donors today.</p>
-             <button className="px-10 py-4 rounded-2xl bg-primary-600 text-white font-black uppercase tracking-widest shadow-xl shadow-primary-500/20 hover:scale-105 active:scale-95 transition-all">
+             <button className="px-10 py-4 rounded-2xl bg-primary-600 text-white-900 font-black uppercase tracking-widest shadow-xl shadow-primary-500/20 hover:scale-105 active:scale-95 transition-all">
                 Identify Collection Centers
              </button>
         </div>

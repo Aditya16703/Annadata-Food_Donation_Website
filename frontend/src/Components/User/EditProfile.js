@@ -85,7 +85,7 @@ const EditProfile = () => {
     <div className="w-full max-w-5xl mx-auto py-8">
       <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
         <div>
-          <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">My Profile</h1>
+          <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white-900 mb-2">My Profile</h1>
           <p className="text-secondary-500 font-medium">Manage your personal information and preferences.</p>
         </div>
         
@@ -95,8 +95,8 @@ const EditProfile = () => {
             onClick={() => setEdit(!edit)}
             className={`px-8 py-3 rounded-2xl font-bold transition-all active:scale-95 shadow-lg flex items-center space-x-2 ${
               edit 
-                ? "bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white" 
-                : "bg-error text-white shadow-error/20"
+                ? "bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white-900" 
+                : "bg-error text-white-900 shadow-error/20"
             }`}
           >
             <i className={`fa-solid ${edit ? "fa-pen-to-square" : "fa-xmark"}`}></i>
@@ -106,7 +106,7 @@ const EditProfile = () => {
           {!edit && (
             <button
               onClick={update}
-              className="px-8 py-3 rounded-2xl font-bold bg-primary-600 text-white shadow-lg shadow-primary-500/20 transition-all active:scale-95 flex items-center space-x-2"
+              className="px-8 py-3 rounded-2xl font-bold bg-primary-600 text-white-900 shadow-lg shadow-primary-500/20 transition-all active:scale-95 flex items-center space-x-2"
             >
               <i className="fa-solid fa-check"></i>
               <span>Save Changes</span>
@@ -118,24 +118,24 @@ const EditProfile = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Profile Card */}
         <div className="lg:col-span-1">
-          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium flex flex-col items-center text-center">
+          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white-900/20 shadow-premium flex flex-col items-center text-center">
             <div className="relative mb-6">
-                <div className="h-32 w-32 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white text-5xl shadow-xl">
+                <div className="h-32 w-32 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white-900 text-5xl shadow-xl">
                     {name ? name.charAt(0).toUpperCase() : <i className="fa-solid fa-user"></i>}
                 </div>
                 {!edit && (
-                    <button className="absolute -bottom-2 -right-2 h-10 w-10 bg-white dark:bg-secondary-800 rounded-xl shadow-lg border border-primary-500/20 text-primary-600 flex items-center justify-center hover:scale-110 transition-transform">
+                    <button className="absolute -bottom-2 -right-2 h-10 w-10 bg-white-100 dark:bg-secondary-800 rounded-xl shadow-lg border border-primary-500/20 text-primary-600 flex items-center justify-center hover:scale-110 transition-transform">
                         <i className="fa-solid fa-camera text-sm"></i>
                     </button>
                 )}
             </div>
-            <h2 className="text-2xl font-bold text-secondary-900 dark:text-white">{name || "Donor Name"}</h2>
+            <h2 className="text-2xl font-bold text-secondary-900 dark:text-white-900">{name || "Donor Name"}</h2>
             <p className="text-primary-600 font-bold text-sm tracking-widest uppercase mt-1">Certified Donor</p>
             
             <div className="w-full mt-10 pt-10 border-t border-secondary-100 dark:border-secondary-800 space-y-4">
                 <div className="flex justify-between items-center px-2">
                     <span className="text-secondary-400 text-xs font-bold uppercase tracking-wider">Member Since</span>
-                    <span className="text-secondary-900 dark:text-white font-bold">Jan 2024</span>
+                    <span className="text-secondary-900 dark:text-white-900 font-bold">Jan 2024</span>
                 </div>
                 <div className="flex justify-between items-center px-2">
                     <span className="text-secondary-400 text-xs font-bold uppercase tracking-wider">Impact Score</span>
@@ -150,10 +150,10 @@ const EditProfile = () => {
         {/* Info Grid */}
         <div className="lg:col-span-2 space-y-8 animate-fade-in-up">
           {/* Main Info Card */}
-          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-premium">
+          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-10 border border-white-900/20 shadow-premium">
             <div className="flex items-center space-x-4 mb-8">
                 <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
-                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Personal Information</h3>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Personal Information</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
@@ -238,10 +238,10 @@ const EditProfile = () => {
           </div>
 
           {/* Preferences & Location */}
-          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-premium">
+          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-10 border border-white-900/20 shadow-premium">
              <div className="flex items-center space-x-4 mb-8">
                 <div className="h-10 w-1 bg-success rounded-full"></div>
-                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Preferences & Location</h3>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Preferences & Location</h3>
             </div>
 
             <div className="space-y-6">

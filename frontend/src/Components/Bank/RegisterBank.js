@@ -50,11 +50,11 @@ const RegisterBank = (props) => {
     <div className="w-full max-w-5xl mx-auto py-8 animate-fade-in">
         <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
             <div className="flex items-center space-x-5">
-                <div className="h-16 w-16 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white text-3xl shadow-xl">
+                <div className="h-16 w-16 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white-900 text-3xl shadow-xl">
                     <i className="fa-solid fa-tent"></i>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">Initialize New Camp</h1>
+                  <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white-900 mb-2">Initialize New Camp</h1>
                   <p className="text-secondary-500 font-medium">Schedule a food distribution or donation event at a new venue.</p>
                 </div>
             </div>
@@ -63,7 +63,7 @@ const RegisterBank = (props) => {
               <button
                 type="button"
                 onClick={() => navigate("/bank/camps")}
-                className="px-8 py-3 rounded-2xl font-bold bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white transition-all active:scale-95 shadow-lg flex items-center space-x-2"
+                className="px-8 py-3 rounded-2xl font-bold bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white-900 transition-all active:scale-95 shadow-lg flex items-center space-x-2"
               >
                 <i className="fa-solid fa-arrow-left"></i>
                 <span>Back to Events</span>
@@ -73,10 +73,10 @@ const RegisterBank = (props) => {
 
         <form onSubmit={submit} className="space-y-10">
             {/* Camp Details Section */}
-            <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium">
+            <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white-900/20 shadow-premium">
                 <div className="flex items-center space-x-4 mb-10">
                     <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
-                    <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Event Core Details</h3>
+                    <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Event Core Details</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
@@ -161,10 +161,10 @@ const RegisterBank = (props) => {
             </div>
 
             {/* Address Section */}
-            <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium">
+            <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white-900/20 shadow-premium">
                  <div className="flex items-center space-x-4 mb-10">
                     <div className="h-10 w-1 bg-success rounded-full"></div>
-                    <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Venue Logistics</h3>
+                    <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Venue Logistics</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -223,10 +223,10 @@ const RegisterBank = (props) => {
             <div className="flex flex-col items-center justify-center py-6">
                 <button
                     type="submit"
-                    className="group relative px-12 py-5 rounded-[2rem] bg-secondary-900 dark:bg-white text-white dark:text-secondary-900 font-display font-black text-xl uppercase tracking-widest shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
+                    className="group relative px-12 py-5 rounded-[2rem] bg-secondary-900 dark:bg-white-100 text-white-900 dark:text-secondary-900 font-display font-black text-xl uppercase tracking-widest shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                    <span className="relative z-10 flex items-center space-x-3 group-hover:text-white">
+                    <span className="relative z-10 flex items-center space-x-3 group-hover:text-white-900">
                         <span>Deploy Camp</span>
                         <i className="fa-solid fa-rocket group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                     </span>

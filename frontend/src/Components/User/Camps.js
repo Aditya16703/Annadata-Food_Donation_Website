@@ -30,7 +30,7 @@ const Camps = () => {
   };
 
   return (
-    <div className="p-6 dark:bg-gray-bg dark:text-white">
+    <div className="p-6 dark:bg-gray-bg dark:text-white-900">
       <div className="grid grid-cols-2 gap-4 items-center">
         {/* STATE DROPDOWN */}
         <div>
@@ -44,7 +44,7 @@ const Camps = () => {
               setState(Number(e.target.value));
               setDistrict(0);
             }}
-            className="w-full p-3 text-md border border-silver rounded bg-white dark:bg-gray-dark dark:text-white"
+            className="w-full p-3 text-md border border-silver rounded bg-white-100 dark:bg-gray-dark dark:text-white-900"
           >
             {data.states.map((e, i) => (
               <option key={i} value={i}>
@@ -63,7 +63,7 @@ const Camps = () => {
             name="district"
             id="district"
             onChange={(e) => setDistrict(Number(e.target.value))}
-            className="w-full p-3 text-md border border-silver rounded bg-white dark:bg-gray-dark dark:text-white"
+            className="w-full p-3 text-md border border-silver rounded bg-white-100 dark:bg-gray-dark dark:text-white-900"
           >
             {data.states[state].districts.map((e, i) => (
               <option key={i} value={i}>
@@ -75,7 +75,7 @@ const Camps = () => {
 
         {/* CAMPS TABLE */}
         <table className="w-max rounded-md text-center border-collapse border border-gray-dark dark:border-gray-light">
-          <thead className="bg-gray-light dark:bg-gray-darkest text-gray-900 dark:text-white">
+          <thead className="bg-gray-light dark:bg-gray-darkest text-gray-900 dark:text-white-900">
             <tr>
               <th className="border p-4 px-4">Date</th>
               <th className="border p-4 px-4">Camp Name</th>
@@ -88,7 +88,7 @@ const Camps = () => {
               <th className="border p-4 px-4">Action</th>
             </tr>
           </thead>
-          <tbody className="text-gray-900 dark:text-white">
+          <tbody className="text-gray-900 dark:text-white-900">
             {camps.map((e) => (
               <tr key={e._id} className="hover:bg-gray-100 dark:hover:bg-gray-dark">
                 <td className="border p-3">{new Date(e.date).toLocaleDateString()}</td>
@@ -101,7 +101,7 @@ const Camps = () => {
                 <td className="border p-3">{e.startTime + " - " + e.endTime}</td>
                 <td className="border p-3">
                   <span
-                    className="border px-4 py-2 rounded-md text-blood cursor-pointer hover:bg-blood hover:text-white"
+                    className="border px-4 py-2 rounded-md text-blood cursor-pointer hover:bg-blood hover:text-white-900"
                     onClick={() => register(e._id)}
                   >
                     Register

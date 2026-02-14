@@ -126,11 +126,11 @@ const EditProfile = () => {
     <div className="w-full max-w-6xl mx-auto py-8">
       <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
         <div className="flex items-center space-x-5">
-            <div className="h-16 w-16 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white text-3xl shadow-xl">
+            <div className="h-16 w-16 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white-900 text-3xl shadow-xl">
                  <i className="fa-solid fa-building-columns"></i>
             </div>
             <div>
-              <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">{name || "Food Bank"}</h1>
+              <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white-900 mb-2">{name || "Food Bank"}</h1>
               <p className="text-secondary-500 font-medium">Official Food Bank Registry & Profile Management</p>
             </div>
         </div>
@@ -141,8 +141,8 @@ const EditProfile = () => {
             onClick={() => setEdit(!edit)}
             className={`px-8 py-3 rounded-2xl font-bold transition-all active:scale-95 shadow-lg flex items-center space-x-2 ${
               edit 
-                ? "bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white" 
-                : "bg-error text-white shadow-error/20"
+                ? "bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white-900" 
+                : "bg-error text-white-900 shadow-error/20"
             }`}
           >
             <i className={`fa-solid ${edit ? "fa-pen-to-square" : "fa-xmark"}`}></i>
@@ -152,7 +152,7 @@ const EditProfile = () => {
           {!edit && (
             <button
               onClick={update}
-              className="px-8 py-3 rounded-2xl font-bold bg-primary-600 text-white shadow-lg shadow-primary-500/20 transition-all active:scale-95 flex items-center space-x-2"
+              className="px-8 py-3 rounded-2xl font-bold bg-primary-600 text-white-900 shadow-lg shadow-primary-500/20 transition-all active:scale-95 flex items-center space-x-2"
             >
               <i className="fa-solid fa-check"></i>
               <span>Save Changes</span>
@@ -164,10 +164,10 @@ const EditProfile = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Stats & Meta */}
         <div className="lg:col-span-4 space-y-8 animate-fade-in-up">
-            <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium">
+            <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white-900/20 shadow-premium">
                 <div className="flex items-center space-x-4 mb-8">
                     <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
-                    <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Facility Metadata</h3>
+                    <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Facility Metadata</h3>
                 </div>
 
                 <div className="space-y-6">
@@ -219,7 +219,7 @@ const EditProfile = () => {
             </div>
 
             {/* Presence Stats */}
-             <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium">
+             <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white-900/20 shadow-premium">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="p-4 rounded-3xl bg-success/5 border border-success/10 text-center">
                         <div className="text-2xl font-black text-success">Active</div>
@@ -235,10 +235,10 @@ const EditProfile = () => {
 
         {/* Right Column: Contact & Location */}
         <div className="lg:col-span-8 space-y-8 animate-fade-in-up delay-100">
-             <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium">
+             <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white-900/20 shadow-premium">
                 <div className="flex items-center space-x-4 mb-8">
                     <div className="h-10 w-1 bg-success rounded-full"></div>
-                    <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Contact & Registration</h3>
+                    <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Contact & Registration</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -339,17 +339,17 @@ const EditProfile = () => {
              </div>
 
              {/* Map Card */}
-             <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium overflow-hidden">
+             <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white-900/20 shadow-premium overflow-hidden">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
                     <div className="flex items-center space-x-4">
                         <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
-                        <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Geospatial Presence</h3>
+                        <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white-900 uppercase tracking-wider">Geospatial Presence</h3>
                     </div>
                     <button
                         type="button"
                         disabled={edit}
                         onClick={fetchGeo}
-                        className="px-6 py-2.5 rounded-xl bg-primary-500 text-white font-bold text-sm shadow-lg shadow-primary-500/30 hover:bg-primary-600 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                        className="px-6 py-2.5 rounded-xl bg-primary-500 text-white-900 font-bold text-sm shadow-lg shadow-primary-500/30 hover:bg-primary-600 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
                     >
                         <i className="fa-solid fa-location-crosshairs"></i>
                         <span>Sync with My Location</span>
@@ -358,20 +358,20 @@ const EditProfile = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2 relative group">
-                        <div id="map" className="w-full h-[300px] rounded-[2rem] border-4 border-white dark:border-secondary-800 shadow-xl overflow-hidden"></div>
+                        <div id="map" className="w-full h-[300px] rounded-[2rem] border-4 border-white-900 dark:border-secondary-800 shadow-xl overflow-hidden"></div>
                         <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-black/10 pointer-events-none"></div>
                     </div>
                     
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Latitude</label>
-                            <div className="p-4 rounded-2xl bg-secondary-50 dark:bg-white/5 border border-secondary-100 dark:border-secondary-800 font-mono font-bold text-secondary-900 dark:text-white">
+                            <div className="p-4 rounded-2xl bg-secondary-50 dark:bg-white-100/5 border border-secondary-100 dark:border-secondary-800 font-mono font-bold text-secondary-900 dark:text-white-900">
                                 {latitude.toFixed(6)}
                             </div>
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Longitude</label>
-                            <div className="p-4 rounded-2xl bg-secondary-50 dark:bg-white/5 border border-secondary-100 dark:border-secondary-800 font-mono font-bold text-secondary-900 dark:text-white">
+                            <div className="p-4 rounded-2xl bg-secondary-50 dark:bg-white-100/5 border border-secondary-100 dark:border-secondary-800 font-mono font-bold text-secondary-900 dark:text-white-900">
                                 {longitude.toFixed(6)}
                             </div>
                         </div>

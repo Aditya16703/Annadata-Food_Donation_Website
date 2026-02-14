@@ -21,12 +21,12 @@ const CampEdit = (props) => {
           onClick={() => props.setPopup(-1)}
         ></div>
         
-        <div className="relative w-full max-w-5xl glass dark:glass-dark rounded-[3rem] shadow-premium border border-white/20 overflow-hidden animate-scale-in flex flex-col max-h-[90vh]">
-            <div className="flex justify-between items-center p-8 border-b border-secondary-100 dark:border-secondary-800 bg-white/50 dark:bg-secondary-900/50 backdrop-blur-sm z-10">
+        <div className="relative w-full max-w-5xl glass dark:glass-dark rounded-[3rem] shadow-premium border border-white-900/20 overflow-hidden animate-scale-in flex flex-col max-h-[90vh]">
+            <div className="flex justify-between items-center p-8 border-b border-secondary-100 dark:border-secondary-800 bg-white-100/50 dark:bg-secondary-900/50 backdrop-blur-sm z-10">
                 <div className="flex items-center space-x-4">
                     <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
                     <div>
-                        <h1 className="text-2xl font-display font-bold text-secondary-900 dark:text-white">Camp Management</h1>
+                        <h1 className="text-2xl font-display font-bold text-secondary-900 dark:text-white-900">Camp Management</h1>
                         <p className="text-xs font-bold text-secondary-400 uppercase tracking-widest mt-0.5">Verified Donor Participation</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const CampEdit = (props) => {
             <div className="p-8 md:p-10 overflow-y-auto custom-scrollbar flex-1">
                 <div className="mb-8 p-6 bg-primary-50 dark:bg-primary-900/10 rounded-3xl border border-primary-100 dark:border-primary-900/30 flex items-center justify-between">
                     <div className="flex items-center space-x-4 text-primary-900 dark:text-primary-100">
-                        <div className="h-12 w-12 rounded-xl bg-primary-500 text-white flex items-center justify-center text-xl shadow-lg shadow-primary-500/20">
+                        <div className="h-12 w-12 rounded-xl bg-primary-500 text-white-900 flex items-center justify-center text-xl shadow-lg shadow-primary-500/20">
                             <i className="fa-solid fa-users-viewfinder"></i>
                         </div>
                         <div>
@@ -75,7 +75,7 @@ const CampEdit = (props) => {
                 </div>
             </div>
 
-            <div className="p-6 bg-secondary-50/50 dark:bg-white/5 border-t border-secondary-100 dark:border-secondary-800 text-center">
+            <div className="p-6 bg-secondary-50/50 dark:bg-white-100/5 border-t border-secondary-100 dark:border-secondary-800 text-center">
                 <p className="text-[10px] font-bold text-secondary-400 uppercase tracking-[0.2em]">Annadata Event Surveillance System • Real-Time Update Activated</p>
             </div>
         </div>

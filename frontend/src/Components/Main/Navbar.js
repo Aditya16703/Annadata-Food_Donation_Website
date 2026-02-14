@@ -50,7 +50,7 @@ const Navbar = (props) => {
                   draggable={false}
                   alt="Annadata Logo"
                 />
-                <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-success rounded-full border-2 border-white"></div>
+                <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-success rounded-full border-2 border-white-900"></div>
               </div>
               <div className="text-2xl font-display font-bold ml-3 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
                 Annadata
@@ -146,7 +146,7 @@ const Navbar = (props) => {
             </button>
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-secondary-900 dark:text-white focus:outline-none"
+              className="p-2 text-secondary-900 dark:text-white-900 focus:outline-none"
               aria-label="Toggle Mobile Menu"
             >
               <i className={`fa-solid fa-${isMobileMenuOpen ? 'xmark' : 'bars'} text-2xl`}></i>
@@ -156,7 +156,7 @@ const Navbar = (props) => {
 
         {/* ✅ Mobile Menu Overlay */}
         <div 
-          className={`lg:hidden fixed inset-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-xl transition-all duration-300 ease-in-out ${
+          className={`lg:hidden fixed inset-0 z-40 bg-white-100/95 dark:bg-black/95 backdrop-blur-xl transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
           }`}
           style={{ top: '80px' }} 
@@ -168,9 +168,9 @@ const Navbar = (props) => {
             <div className="space-y-3">
               <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest">About Us</h3>
               <div className="flex flex-col space-y-2">
-                <Link to="/" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                <Link to="/about" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>About Annadata</Link>
-                <Link to="/contactUs" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+                <Link to="/" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+                <Link to="/about" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>About Annadata</Link>
+                <Link to="/contactUs" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
               </div>
             </div>
 
@@ -182,8 +182,8 @@ const Navbar = (props) => {
                 <div className="space-y-3">
                   <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest">Looking For Food</h3>
                   <div className="flex flex-col space-y-2">
-                    <Link to="/register/receiver" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>User Login/Register</Link>
-                    <Link to="/food-banks" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Bank Directory</Link>
+                    <Link to="/register/receiver" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>User Login/Register</Link>
+                    <Link to="/food-banks" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Bank Directory</Link>
                   </div>
                 </div>
 
@@ -193,9 +193,9 @@ const Navbar = (props) => {
                 <div className="space-y-3">
                   <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest">Want To Donate</h3>
                   <div className="flex flex-col space-y-2">
-                    <Link to="/register/donor" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Donor Login/Register</Link>
-                    <Link to="/food-camps" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Donation Camps</Link>
-                    <Link to="/about-food-donation" className="text-lg font-medium text-secondary-900 dark:text-white hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>About Food Donation</Link>
+                    <Link to="/register/donor" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Donor Login/Register</Link>
+                    <Link to="/food-camps" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Donation Camps</Link>
+                    <Link to="/about-food-donation" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>About Food Donation</Link>
                   </div>
                 </div>
 
@@ -207,7 +207,7 @@ const Navbar = (props) => {
               </>
             ) : (
               <div className="space-y-4">
-                 <Link to={`/${props.user}/profile`} className="flex items-center space-x-3 text-lg font-medium text-secondary-900 dark:text-white" onClick={() => setIsMobileMenuOpen(false)}>
+                 <Link to={`/${props.user}/profile`} className="flex items-center space-x-3 text-lg font-medium text-secondary-900 dark:text-white-900" onClick={() => setIsMobileMenuOpen(false)}>
                   <div className="h-10 w-10 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center">
                     <i className="fa-solid fa-user"></i>
                   </div>
