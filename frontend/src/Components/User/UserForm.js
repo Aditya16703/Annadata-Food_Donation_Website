@@ -85,201 +85,234 @@ const UserForm = () => {
   };
 
   return (
-    <div className="p-6 w-full">
+    <div className="w-full max-w-5xl mx-auto py-8">
+      <div className="mb-12">
+        <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">
+            {handle === "donate" ? "Donate Food" : "Request Support"}
+        </h1>
+        <p className="text-secondary-500 font-medium">
+            {handle === "donate" 
+                ? "Your contribution helps fight hunger. Fill in the details to schedule a donation." 
+                : "We are here to help. Provide your details and we'll connect you with a food bank."}
+        </p>
+      </div>
+
       <form
-        className="space-y-7"
+        className="space-y-10 animate-fade-in"
         onSubmit={(e) => {
           e.preventDefault();
           if (bank === "") {
-            alert("Select a Food bank");
+            alert("Please select a Food Bank to continue.");
             return;
           }
           handle === "donate" ? donate() : request();
         }}
       >
-        <fieldset className="border border-solid border-gray-300 p-3">
-          {/*  changed class → className */}
-          <legend className="text-2xl font-bold">
-            &nbsp;{handle === "donate" ? "Donate Food" : "Make Food Request"}&nbsp;
-          </legend>
-
-          {handle === "request" && (
-            <div className="text-right">
-              {/* Changed <legend> to <div> (nested legend not valid HTML) */}
-              <input
-                type="checkbox"
-                id="me"
-                checked={me}
-                onChange={() => setMe(!me)} // fixed controlled checkbox
-              />
-              <label htmlFor="me"> For me</label>
+        <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-12 border border-white/20 shadow-premium">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div className="flex items-center space-x-4">
+                <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">
+                    {handle === "donate" ? "Donation" : "Beneficiary"} Information
+                </h3>
             </div>
-          )}
 
-          <table className="w-full" cellPadding={10}>
-            <tbody>
-              <tr>
-                <td>
-                  <label className="font-semibold leading-8">
-                    {handle === "request" && "Patient "}Name:
-                    <font color="red">*</font>
-                  </label>
-                  <input
-                    className="w-full p-3 text-md border border-silver rounded"
-                    type="text"
-                    placeholder="Enter your full name"
-                    required
-                    value={name}
-                    disabled={me || handle === "donate"}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </td>
-
-                <td>
-                  <label htmlFor="food" className="font-semibold leading-8">
-                    Food Group:<font color="red">*</font>
-                  </label>
-                  <select
-                    name="food"
-                    value={food} //  used value instead of selected
-                    onChange={(e) => setFood(Number(e.target.value))}
-                    disabled={me || handle === "donate"}
-                    className="w-full p-3 text-md border border-silver rounded"
-                  >
-                    {foodGroups.map((item, i) => (
-                      <option key={i} value={i}>
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-              </tr>
-
-              {handle === "request" && (
-                <tr>
-                  <td>
-                    <label className="font-semibold leading-8">
-                      Age:<font color="red">*</font>
-                    </label>
+            {handle === "request" && (
+              <label className="flex items-center space-x-3 cursor-pointer group">
+                <div className="relative">
                     <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="number"
-                      placeholder="Enter your age"
-                      required
-                      value={age}
-                      min={1}
-                      disabled={me}
-                      onChange={(e) => setAge(e.target.value)}
+                        type="checkbox"
+                        className="sr-only peer"
+                        checked={me}
+                        onChange={() => setMe(!me)}
                     />
-                  </td>
+                    <div className="w-11 h-6 bg-secondary-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                </div>
+                <span className="text-sm font-bold text-secondary-600 dark:text-white-400 group-hover:text-primary-600 transition-colors">Apply for myself</span>
+              </label>
+            )}
+          </div>
 
-                  <td>
-                    <label htmlFor="gender" className="font-semibold leading-8">
-                      Gender:<font color="red">*</font>
-                    </label>
-                    <select
-                      name="gender"
-                      id="gender"
-                      value={gender} //  used value instead of selected
-                      disabled={me}
-                      onChange={(e) => setGender(e.target.value)}
-                      className="w-full p-3 text-md border border-silver rounded"
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </td>
-                </tr>
-              )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className={`space-y-2 ${handle === "request" ? "lg:col-span-2" : "lg:col-span-3"}`}>
+              <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">
+                {handle === "request" ? "Beneficiary Full Name" : "Donor Full Name"} <span className="text-error font-bold">*</span>
+              </label>
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-500">
+                    <i className="fa-solid fa-user"></i>
+                </div>
+                <input
+                  className="input-field dark:bg-secondary-900/50 pl-11"
+                  type="text"
+                  placeholder="Enter full name"
+                  required
+                  value={name}
+                  disabled={me || handle === "donate"}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            </div>
 
-              <tr>
-                <td>
-                  <label className="font-semibold leading-8">
-                    Units (in kg):<font color="red">*</font>
-                  </label>
-                  <input
-                    className="w-full p-3 text-md border border-silver rounded"
-                    type="number"
-                    min={1}
-                    max={1000}
-                    required
-                    value={units}
-                    onChange={(e) => setUnits(e.target.value)}
-                  />
-                </td>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">
+                Food Category <span className="text-error font-bold">*</span>
+              </label>
+              <div className="relative">
+                <select
+                  value={food}
+                  onChange={(e) => setFood(Number(e.target.value))}
+                  disabled={me || handle === "donate"}
+                  className="input-field appearance-none dark:bg-secondary-900/50 pr-10"
+                >
+                  {foodGroups.map((item, i) => (
+                    <option key={i} value={i}>{item}</option>
+                  ))}
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                    <i className="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
 
-                <td colSpan={2}>
-                  <label htmlFor="desc" className="font-semibold leading-8">
-                    {handle === "donate" ? "Disease (if any):" : "Reason:"}
-                  </label>
-                  <input
-                    className="w-full p-3 text-md border border-silver rounded"
-                    name="desc"
+            {handle === "request" && (
+                <>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">Age <span className="text-error font-bold">*</span></label>
+                      <input
+                        className="input-field dark:bg-secondary-900/50"
+                        type="number"
+                        placeholder="Years"
+                        required
+                        value={age}
+                        min={1}
+                        disabled={me}
+                        onChange={(e) => setAge(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">Gender <span className="text-error font-bold">*</span></label>
+                      <div className="relative">
+                        <select
+                          value={gender}
+                          disabled={me}
+                          onChange={(e) => setGender(e.target.value)}
+                          className="input-field appearance-none dark:bg-secondary-900/50 pr-10"
+                        >
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                            <i className="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </div>
+                </>
+            )}
+
+            <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">Quantity (Approx. kg) <span className="text-error font-bold">*</span></label>
+                <div className="relative">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-500">
+                        <i className="fa-solid fa-weight-hanging"></i>
+                    </div>
+                    <input
+                        className="input-field dark:bg-secondary-900/50 pl-11"
+                        type="number"
+                        min={1}
+                        max={1000}
+                        required
+                        value={units}
+                        onChange={(e) => setUnits(e.target.value)}
+                        placeholder="e.g. 10"
+                    />
+                </div>
+            </div>
+
+            <div className="md:col-span-2 space-y-2">
+                <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">
+                    {handle === "donate" ? "Health/Safety Notes (e.g. Allergens)" : "Reason for Request"}
+                </label>
+                <input
+                    className="input-field dark:bg-secondary-900/50"
                     type="text"
-                    value={desc} // added value for controlled input
+                    value={desc}
                     onChange={(e) => setDesc(e.target.value)}
-                  />
-                </td>
-              </tr>
+                    placeholder={handle === "donate" ? "Any specific instructions for storage or handling..." : "Briefly describe the need..."}
+                />
+            </div>
+          </div>
+        </div>
 
-              <tr>
-                <td>
-                  <label htmlFor="state" className="font-semibold leading-8">
-                    State:<font color="red">*</font>
-                  </label>
-                  <select
-                    name="state"
-                    id="state"
-                    value={state} //  used controlled value
-                    onChange={(e) => {
-                      setState(Number(e.target.value));
-                      setDistrict(0);
-                    }}
-                    className="w-full p-3 text-md border border-silver rounded"
-                  >
-                    {data.states.map((s, i) => (
-                      <option key={i} value={i}>
-                        {s.state}
-                      </option>
-                    ))}
-                  </select>
-                </td>
+        {/* Location & Bank Selection */}
+        <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-12 border border-white/20 shadow-premium">
+            <div className="flex items-center space-x-4 mb-10">
+                <div className="h-10 w-1 bg-success rounded-full"></div>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Select Target Food Bank</h3>
+            </div>
 
-                <td>
-                  <label htmlFor="district" className="font-semibold leading-8">
-                    District:<font color="red">*</font>
-                  </label>
-                  <select
-                    name="district"
-                    id="district"
-                    value={district} //  used controlled value
-                    onChange={(e) => setDistrict(Number(e.target.value))}
-                    className="w-full p-3 text-md border border-silver rounded"
-                  >
-                    {data.states[state].districts.map((d, i) => (
-                      <option key={i} value={i}>
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">State <span className="text-error font-bold">*</span></label>
+                    <div className="relative">
+                        <select
+                            value={state}
+                            onChange={(e) => {
+                                setState(Number(e.target.value));
+                                setDistrict(0);
+                            }}
+                            className="input-field appearance-none dark:bg-secondary-900/50 pr-10"
+                        >
+                            {data.states.map((s, i) => (
+                                <option key={i} value={i}>{s.state}</option>
+                            ))}
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                            <i className="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
 
-          <BanksSearch
-            state={data.states[state].state}
-            district={data.states[state].districts[district]}
-            setBank={setBank}
-          />
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-secondary-700 dark:text-white-300 ml-1">District <span className="text-error font-bold">*</span></label>
+                    <div className="relative">
+                        <select
+                            value={district}
+                            onChange={(e) => setDistrict(Number(e.target.value))}
+                            className="input-field appearance-none dark:bg-secondary-900/50 pr-10"
+                        >
+                            {data.states[state].districts.map((d, i) => (
+                                <option key={i} value={i}>{d}</option>
+                            ))}
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                            <i className="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div className="bg-white/50 dark:bg-black/50 rounded-3xl p-6 border border-white/10">
+                <BanksSearch
+                    state={data.states[state].state}
+                    district={data.states[state].districts[district]}
+                    setBank={setBank}
+                />
+            </div>
+        </div>
+
+        <div className="flex flex-col items-center pt-4">
           <button
             type="submit"
-            className="block mx-auto my-2 mt-4 w-4/12 px-9 py-2 bg-blood text-white hover:bg-gray-darkest rounded-full text-lg font-bold"
+            className="btn-primary px-16 py-4 text-lg font-bold shadow-premium transition-all active:scale-95 group flex items-center space-x-3"
           >
-            Submit
+            <span>Confirm {handle === "donate" ? "Donation" : "Request"}</span>
+            <i className="fa-solid fa-circle-check transition-transform group-hover:scale-125"></i>
           </button>
-        </fieldset>
+          <p className="mt-4 text-xs text-secondary-500 font-medium">By submitting, you agree to our community standards and privacy policy.</p>
+        </div>
       </form>
     </div>
   );

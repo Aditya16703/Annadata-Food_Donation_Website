@@ -36,19 +36,37 @@ const Bank = (props) => {
     { to: "/bank/registerBank", icon: "fa-rotate", title: "Register new Camp" },
   ];
   return (
-    <div className="flex w-full h-96 bg-white dark:bg-gray-dark text-gray-900 dark:text-white">
-      <UserNav data={nav} />
-      <div className="ml-96 w-full flex justify-center pr-24">
-        {handle === "profile" && <EditProfile />}
-        {handle === "stock" && <Stock />}
-        {/* If handle is "donations", render the History component with user set to "bank" and the current handle.*/}
-        {handle === "donations" && <History user="bank" handle={handle} />}
-        {handle === "requests" && <History user="bank" handle={handle} />}
-        {handle === "camps" && <Camps />}
-        {handle === "registerBank" && (
-          <RegisterBank todo="register" bank={user} />
-        )}
-      </div>
+    <div className="flex min-h-screen bg-white-100 dark:bg-black text-secondary-900 dark:text-white font-sans">
+      {/* Sidebar */}
+      <aside className="w-72 fixed h-screen z-40 hidden lg:block">
+        <UserNav data={nav} />
+      </aside>
+
+      {/* Main content */}
+      <main className="flex-1 lg:ml-72 min-h-screen overflow-x-hidden">
+        <div className="p-6 md:p-12 max-w-6xl mx-auto animate-fade-in">
+          {handle === "profile" && <EditProfile />}
+          {handle === "stock" && <Stock />}
+          {handle === "donations" && <History user="bank" handle={handle} />}
+          {handle === "requests" && <History user="bank" handle={handle} />}
+          {handle === "camps" && <Camps />}
+          {handle === "registerBank" && (
+            <RegisterBank todo="register" bank={user} />
+          )}
+
+          {!handle && (
+            <div className="h-[60vh] flex flex-col items-center justify-center text-center space-y-4">
+                <div className="h-20 w-20 bg-primary-100 text-primary-600 rounded-3xl flex items-center justify-center text-3xl">
+                    <i className="fa-solid fa-building-columns"></i>
+                </div>
+                <div>
+                    <h2 className="text-2xl font-display font-bold">Food Bank Dashboard</h2>
+                    <p className="text-secondary-500">Manage your stock, donations, and camp registrations from the side menu.</p>
+                </div>
+            </div>
+          )}
+        </div>
+      </main>
     </div>
   );
 };

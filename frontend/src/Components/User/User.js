@@ -29,16 +29,28 @@ const User = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
-      {/* Sidebar */}
-      <div className="w-64 fixed h-full">
+    <div className="flex min-h-screen bg-white-100 dark:bg-black text-secondary-900 dark:text-white font-sans">
+      {/* Sidebar - Now handled as a flexible column */}
+      <aside className="w-72 fixed h-screen z-40 hidden lg:block">
         <UserNav data={nav} />
-      </div>
+      </aside>
 
-      {/* Main content */}
-      <div className="flex-1 ml-64 p-6 sm:p-10 overflow-auto">
-        {componentMap[handle] || <div>Select an option from the menu.</div>}
-      </div>
+      {/* Main content - Adjusted margin for fixed sidebar */}
+      <main className="flex-1 lg:ml-72 min-h-screen overflow-x-hidden">
+        <div className="p-6 md:p-12 max-w-6xl mx-auto animate-fade-in">
+          {componentMap[handle] || (
+            <div className="h-[60vh] flex flex-col items-center justify-center text-center space-y-4">
+                <div className="h-20 w-20 bg-primary-100 text-primary-600 rounded-3xl flex items-center justify-center text-3xl">
+                    <i className="fa-solid fa-hand-pointer"></i>
+                </div>
+                <div>
+                    <h2 className="text-2xl font-display font-bold">Select a Dashboard View</h2>
+                    <p className="text-secondary-500">Choose an option from the sidebar to manage your donations.</p>
+                </div>
+            </div>
+          )}
+        </div>
+      </main>
     </div>
   );
 };

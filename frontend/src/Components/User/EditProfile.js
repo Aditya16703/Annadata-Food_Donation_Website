@@ -82,222 +82,245 @@ const EditProfile = () => {
   // ------------------------------------------------------------
 
   return (
-    <div>
-      <section className="flex justify-center items-center">
-        {/* Form starts */}
-        <form
-          className="space-y-2"
-          onSubmit={(e) => {
-            e.preventDefault();
-            update();
-          }}
-        >
-          <table className="w-full" cellPadding={15}>
-            {/* ----------- Row 1: Name, Age, Gender ----------- */}
-            <tr>
-              <td>
-                <label className="font-semibold leading-8">
-                  Name:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  placeholder="Enter your full name"
-                  required
-                  disabled={edit}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </td>
+    <div className="w-full max-w-5xl mx-auto py-8">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+        <div>
+          <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">My Profile</h1>
+          <p className="text-secondary-500 font-medium">Manage your personal information and preferences.</p>
+        </div>
+        
+        <div className="flex space-x-4">
+          <button
+            type="button"
+            onClick={() => setEdit(!edit)}
+            className={`px-8 py-3 rounded-2xl font-bold transition-all active:scale-95 shadow-lg flex items-center space-x-2 ${
+              edit 
+                ? "bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white" 
+                : "bg-error text-white shadow-error/20"
+            }`}
+          >
+            <i className={`fa-solid ${edit ? "fa-pen-to-square" : "fa-xmark"}`}></i>
+            <span>{edit ? "Edit Profile" : "Cancel"}</span>
+          </button>
 
-              <td>
-                <label className="font-semibold leading-8">
-                  Age:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="number"
-                  placeholder="Enter your age"
-                  required
-                  disabled={edit}
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                />
-              </td>
+          {!edit && (
+            <button
+              onClick={update}
+              className="px-8 py-3 rounded-2xl font-bold bg-primary-600 text-white shadow-lg shadow-primary-500/20 transition-all active:scale-95 flex items-center space-x-2"
+            >
+              <i className="fa-solid fa-check"></i>
+              <span>Save Changes</span>
+            </button>
+          )}
+        </div>
+      </div>
 
-              <td>
-                <label htmlFor="gender" className="font-semibold leading-8">
-                  Gender:<font color="red">*</font>
-                </label>
-                <select
-                  name="gender"
-                  id="gender"
-                  disabled={edit}
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </td>
-            </tr>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Profile Card */}
+        <div className="lg:col-span-1">
+          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium flex flex-col items-center text-center">
+            <div className="relative mb-6">
+                <div className="h-32 w-32 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white text-5xl shadow-xl">
+                    {name ? name.charAt(0).toUpperCase() : <i className="fa-solid fa-user"></i>}
+                </div>
+                {!edit && (
+                    <button className="absolute -bottom-2 -right-2 h-10 w-10 bg-white dark:bg-secondary-800 rounded-xl shadow-lg border border-primary-500/20 text-primary-600 flex items-center justify-center hover:scale-110 transition-transform">
+                        <i className="fa-solid fa-camera text-sm"></i>
+                    </button>
+                )}
+            </div>
+            <h2 className="text-2xl font-bold text-secondary-900 dark:text-white">{name || "Donor Name"}</h2>
+            <p className="text-primary-600 font-bold text-sm tracking-widest uppercase mt-1">Certified Donor</p>
+            
+            <div className="w-full mt-10 pt-10 border-t border-secondary-100 dark:border-secondary-800 space-y-4">
+                <div className="flex justify-between items-center px-2">
+                    <span className="text-secondary-400 text-xs font-bold uppercase tracking-wider">Member Since</span>
+                    <span className="text-secondary-900 dark:text-white font-bold">Jan 2024</span>
+                </div>
+                <div className="flex justify-between items-center px-2">
+                    <span className="text-secondary-400 text-xs font-bold uppercase tracking-wider">Impact Score</span>
+                    <span className="h-8 px-3 bg-success/10 text-success rounded-lg flex items-center font-bold text-sm">
+                        <i className="fa-solid fa-bolt mr-2"></i> 850
+                    </span>
+                </div>
+            </div>
+          </div>
+        </div>
 
-            {/* ----------- Row 2: Food Group, Mobile, Buttons ----------- */}
-            <tr>
-              <td>
-                <label htmlFor="food" className="font-semibold leading-8">
-                  Food Group:<font color="red">*</font>
-                </label>
-                <select
-                  name="food"
-                  id="food"
-                  disabled={edit}
-                  value={food}
-                  onChange={(e) => setFood(e.target.value)}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  {foodGroups.map((e, i) => (
-                    <option key={i} value={i}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
-              </td>
+        {/* Info Grid */}
+        <div className="lg:col-span-2 space-y-8 animate-fade-in-up">
+          {/* Main Info Card */}
+          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-premium">
+            <div className="flex items-center space-x-4 mb-8">
+                <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Personal Information</h3>
+            </div>
 
-              <td>
-                <label className="font-semibold leading-8">
-                  Mobile:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="number"
-                  placeholder="Enter your mobile"
-                  required
-                  disabled={edit}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </td>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Full Name</label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-500">
+                      <i className="fa-solid fa-signature"></i>
+                  </div>
+                  <input
+                    className="input-field dark:bg-secondary-900/50 pl-11"
+                    type="text"
+                    disabled={edit}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+              </div>
 
-              {/* Buttons section */}
-              <td className="absolute">
-                {/* Edit/Cancel toggle button */}
-                <button
-                  type="button"
-                  onClick={() => setEdit(!edit)}
-                  className="w-44 mt-8 px-7 py-2 bg-blood text-white-900 hover:bg-gray-darkest rounded-full text-lg font-bold align-bottom"
-                >
-                  {edit ? "Edit" : "Cancel"}
-                </button>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Age</label>
+                  <input
+                    className="input-field dark:bg-secondary-900/50"
+                    type="number"
+                    disabled={edit}
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Gender</label>
+                  <div className="relative">
+                    <select
+                      className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                      disabled={edit}
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
+                    >
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                        <i className="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                <br />
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Email Address</label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-500">
+                      <i className="fa-solid fa-envelope"></i>
+                  </div>
+                  <input
+                    className="input-field dark:bg-secondary-900/50 pl-11"
+                    type="email"
+                    disabled={edit}
+                    value={mail}
+                    onChange={(e) => setMail(e.target.value)}
+                  />
+                </div>
+              </div>
 
-                {/* Save button (only visible when editing) */}
-                <button
-                  type="submit"
-                  className={`w-44 mt-8 px-7 py-2 bg-blood text-white-900 hover:bg-gray-darkest rounded-full text-lg font-bold align-bottom ${
-                    edit && "hidden"
-                  }`}
-                >
-                  Save
-                </button>
-              </td>
-            </tr>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Mobile Number</label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-500">
+                      <i className="fa-solid fa-phone"></i>
+                  </div>
+                  <input
+                    className="input-field dark:bg-secondary-900/50 pl-11"
+                    type="tel"
+                    disabled={edit}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-            {/* ----------- Row 3: Password & Email ----------- */}
-            <tr>
-              <td>
-                <label className="font-semibold leading-8">
-                  Password:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="password"
-                  placeholder="Enter your password"
-                  required
-                  disabled // password can't be edited
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </td>
+          {/* Preferences & Location */}
+          <div className="glass dark:glass-dark rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-premium">
+             <div className="flex items-center space-x-4 mb-8">
+                <div className="h-10 w-1 bg-success rounded-full"></div>
+                <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Preferences & Location</h3>
+            </div>
 
-              <td>
-                <label className="font-semibold leading-8">Email:</label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="email"
-                  placeholder="Enter your email"
-                  disabled={edit}
-                  value={mail}
-                  onChange={(e) => setMail(e.target.value)}
-                />
-              </td>
-            </tr>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Primary Food Donation Group</label>
+                <div className="relative">
+                  <select
+                    className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                    disabled={edit}
+                    value={food}
+                    onChange={(e) => setFood(e.target.value)}
+                  >
+                    {foodGroups.map((e, i) => (
+                      <option key={i} value={i}>{e}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                        <i className="fa-solid fa-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
 
-            {/* ----------- Row 4: State & District ----------- */}
-            <tr>
-              <td>
-                <label htmlFor="state" className="font-semibold leading-8">
-                  State:<font color="red">*</font>
-                </label>
-                <select
-                  name="state"
-                  id="state"
-                  disabled={edit}
-                  value={state}
-                  onChange={(e) => {
-                    setState(e.target.value);
-                    setDistrict(0); // Reset district when state changes
-                  }}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  {data.states.map((e, i) => (
-                    <option key={i} value={i}>
-                      {e.state}
-                    </option>
-                  ))}
-                </select>
-              </td>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">State</label>
+                  <div className="relative">
+                    <select
+                      className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                      disabled={edit}
+                      value={state}
+                      onChange={(e) => {
+                        setState(e.target.value);
+                        setDistrict(0);
+                      }}
+                    >
+                      {data.states.map((e, i) => (
+                        <option key={i} value={i}>{e.state}</option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                        <i className="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                  </div>
+                </div>
 
-              <td>
-                <label htmlFor="district" className="font-semibold leading-8">
-                  District:<font color="red">*</font>
-                </label>
-                <select
-                  name="district"
-                  id="district"
-                  disabled={edit}
-                  value={district}
-                  onChange={(e) => setDistrict(e.target.value)}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  {data.states[state].districts.map((e, i) => (
-                    <option key={i} value={i}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
-              </td>
-            </tr>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">District</label>
+                  <div className="relative">
+                    <select
+                      className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                      disabled={edit}
+                      value={district}
+                      onChange={(e) => setDistrict(e.target.value)}
+                    >
+                      {data.states[state].districts.map((e, i) => (
+                        <option key={i} value={i}>{e}</option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                        <i className="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-            {/* ----------- Row 5: Address ----------- */}
-            <tr>
-              <td colSpan={2}>
-                <label className="font-semibold leading-8">Address:</label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  placeholder="Enter your address"
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary-500 dark:text-white-400 ml-1">Permanent Address</label>
+                <textarea
+                  className="input-field dark:bg-secondary-900/50 min-h-[100px] pt-3"
+                  placeholder="Street, Landmark, City, Pincode"
                   disabled={edit}
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                />
-              </td>
-            </tr>
-          </table>
-        </form>
-      </section>
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

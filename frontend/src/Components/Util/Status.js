@@ -57,18 +57,34 @@ const Status = (props) => {
       : "border-green text-green dark:border-green-500 dark:text-green-300";
 
   return (
-    <select
-      value={status}
-      onChange={handleChange}
-      disabled={["Denied", "Donated", "Completed"].includes(status)}
-      className={`${statusClass} border-2 px-4 py-2 rounded-xl hover:shadow-md cursor-pointer bg-white dark:bg-gray-800`}
-    >
-      {choices.map((e) => (
-        <option key={e} value={e}>
-          {e}
-        </option>
-      ))}
-    </select>
+    <div className="relative group/status min-w-[120px]">
+      <select
+        value={status}
+        onChange={handleChange}
+        disabled={["Denied", "Donated", "Completed"].includes(status)}
+        className={`w-full appearance-none px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider border-2 transition-all duration-300 cursor-pointer shadow-sm ${
+          status === "Pending"
+            ? "bg-secondary-50 border-secondary-200 text-secondary-500 hover:border-secondary-300"
+            : status === "Approved"
+            ? "bg-warning/10 border-warning/20 text-warning hover:border-warning/40 shadow-warning/5"
+            : status === "Denied"
+            ? "bg-error/10 border-error/20 text-error disabled:opacity-80 disabled:cursor-not-allowed"
+            : "bg-success/10 border-success/20 text-success disabled:opacity-80 disabled:cursor-not-allowed"
+        }`}
+      >
+        {choices.map((e) => (
+          <option key={e} value={e} className="dark:bg-secondary-900 text-sm font-sans uppercase font-bold">
+            {e}
+          </option>
+        ))}
+      </select>
+      
+      {!["Denied", "Donated", "Completed"].includes(status) && (
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[8px] opacity-60 group-hover/status:opacity-100 transition-opacity">
+            <i className="fa-solid fa-chevron-down"></i>
+        </div>
+      )}
+    </div>
   );
 };
 

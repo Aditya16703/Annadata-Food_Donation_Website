@@ -59,8 +59,7 @@ const EditProfile = () => {
   // Re-renders the map whenever coordinates change
   useEffect(() => {
     if (longitude === 0) return; // skip if coords not loaded yet
-    mapboxgl.accessToken =
-      "pk.eyJ1IjoiY29yb2JvcmkiLCJhIjoiY2s3Y3FyaWx0MDIwbTNpbnc4emxkdndrbiJ9.9KeSiPVeMK0rWvJmTE0lVA";
+    // Token assignment removed for push
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v12",
@@ -124,260 +123,271 @@ const EditProfile = () => {
 
   // --------------------------- UI PART ---------------------------
   return (
-    <div>
-      <section className="flex justify-center items-center">
-        <form
-          className="space-y-2"
-          onSubmit={(e) => {
-            e.preventDefault();
-            update();
-          }}
-        >
-          <table className="w-full" cellPadding={15}>
-            {/* ---------- ROW 1 ---------- */}
-            <tr>
-              <td>
-                <label className="font-semibold leading-8">
-                  Food Bank Name:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  required
-                  disabled={edit}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </td>
-              <td>
-                <label className="font-semibold leading-8">
-                  Parent FoodBank Name:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  required
-                  disabled={edit}
-                  value={hospital}
-                  onChange={(e) => setHospital(e.target.value)}
-                />
-              </td>
-              <td>
-                <label className="font-semibold leading-8">
-                  Contact Person:
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  disabled={edit}
-                  value={contactPerson}
-                  onChange={(e) => setContactPerson(e.target.value)}
-                />
-              </td>
-            </tr>
+    <div className="w-full max-w-6xl mx-auto py-8">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+        <div className="flex items-center space-x-5">
+            <div className="h-16 w-16 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white text-3xl shadow-xl">
+                 <i className="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+              <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">{name || "Food Bank"}</h1>
+              <p className="text-secondary-500 font-medium">Official Food Bank Registry & Profile Management</p>
+            </div>
+        </div>
+        
+        <div className="flex space-x-4">
+          <button
+            type="button"
+            onClick={() => setEdit(!edit)}
+            className={`px-8 py-3 rounded-2xl font-bold transition-all active:scale-95 shadow-lg flex items-center space-x-2 ${
+              edit 
+                ? "bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white" 
+                : "bg-error text-white shadow-error/20"
+            }`}
+          >
+            <i className={`fa-solid ${edit ? "fa-pen-to-square" : "fa-xmark"}`}></i>
+            <span>{edit ? "Edit Profile" : "Cancel"}</span>
+          </button>
 
-            {/* ---------- ROW 2 ---------- */}
-            <tr>
-              <td>
-                <label htmlFor="category" className="font-semibold leading-8">
-                  Category:<font color="red">*</font>
-                </label>
-                <select
-                  name="category"
-                  id="category"
-                  value={category}
-                  disabled={edit}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  <option value="Private">Private</option>
-                  <option value="Govt.">Govt.</option>
-                  <option value="Red Cross">Red Cross</option>
-                </select>
-              </td>
-              <td>
-                <label className="font-semibold leading-8">
-                  Mobile:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="number"
-                  required
-                  disabled={edit}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </td>
-              <td>
-                <label className="font-semibold leading-8">
-                  Password:<font color="red">*</font>
-                </label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="password"
-                  disabled
-                  value={password}
-                />
-              </td>
-            </tr>
+          {!edit && (
+            <button
+              onClick={update}
+              className="px-8 py-3 rounded-2xl font-bold bg-primary-600 text-white shadow-lg shadow-primary-500/20 transition-all active:scale-95 flex items-center space-x-2"
+            >
+              <i className="fa-solid fa-check"></i>
+              <span>Save Changes</span>
+            </button>
+          )}
+        </div>
+      </div>
 
-            {/* ---------- ROW 3 ---------- */}
-            <tr>
-              <td>
-                <label className="font-semibold leading-8">Email:</label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="email"
-                  disabled={edit}
-                  value={mail}
-                  onChange={(e) => setMail(e.target.value)}
-                />
-              </td>
-              <td>
-                <label className="font-semibold leading-8">Website:</label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  disabled={edit}
-                  value={website}
-                  onChange={(e) => setWebsite(e.target.value)}
-                />
-              </td>
-              {/* Buttons */}
-              <td className="absolute">
-                <button
-                  type="button"
-                  onClick={() => setEdit(!edit)}
-                  className="w-44 mt-8 px-7 py-2 bg-blood text-white-900 hover:bg-gray-darkest rounded-full text-lg font-bold"
-                >
-                  {edit ? "Edit" : "Cancel"}
-                </button>
-                <br />
-                <button
-                  type="submit"
-                  className={`w-44 mt-8 px-7 py-2 bg-blood text-white-900 hover:bg-gray-darkest rounded-full text-lg font-bold ${
-                    edit && "hidden"
-                  }`}
-                >
-                  Save
-                </button>
-              </td>
-            </tr>
-
-            {/* ---------- STATE & DISTRICT ---------- */}
-            <tr>
-              <td>
-                <label htmlFor="state" className="font-semibold leading-8">
-                  State:<font color="red">*</font>
-                </label>
-                <select
-                  name="state"
-                  id="state"
-                  disabled={edit}
-                  onChange={(e) => {
-                    setState(e.target.value);
-                    setDistrict(0);
-                  }}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  {data.states.map((e, i) => (
-                    <option key={i} value={i} selected={state === i}>
-                      {e.state}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td>
-                <label htmlFor="district" className="font-semibold leading-8">
-                  District:<font color="red">*</font>
-                </label>
-                <select
-                  name="district"
-                  id="district"
-                  disabled={edit}
-                  onChange={(e) => setDistrict(e.target.value)}
-                  className="w-full p-3 text-md border border-silver rounded"
-                >
-                  {data.states[state].districts.map((e, i) => (
-                    <option key={i} value={i} selected={district === i}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
-              </td>
-            </tr>
-
-            {/* ---------- ADDRESS & MAP ---------- */}
-            <tr>
-              <td colSpan={3}>
-                <label className="font-semibold leading-8">Address:</label>
-                <input
-                  className="w-full p-3 text-md border border-silver rounded"
-                  type="text"
-                  disabled={edit}
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td colSpan={3}>
-                <label className="font-semibold leading-7">
-                  Location:<font color="red">*</font>
-                </label>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                    gap: "1rem",
-                  }}
-                >
-                  {/* Map Section */}
-                  <div
-                    className="w-full"
-                    style={{ gridColumn: "2/4", gridRow: "1/3" }}
-                  >
-                    <div id="map" className="w-full h-[200px]"></div>
-                  </div>
-
-                  {/* Latitude/Longitude Section */}
-                  <div style={{ gridColumn: "1", gridRow: "1/2" }}>
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="number"
-                      step="0.01"
-                      placeholder="Latitude"
-                      disabled
-                      value={latitude}
-                      required
-                    />
-                    <br />
-                    <br />
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="number"
-                      step="0.01"
-                      placeholder="Longitude"
-                      disabled
-                      value={longitude}
-                      required
-                    />
-                    <button
-                      type="button"
-                      disabled={edit}
-                      className="bg-purple text-center text-white-900 rounded-lg mt-4 px-4 py-2"
-                      onClick={fetchGeo}
-                    >
-                      Update Geocode
-                    </button>
-                  </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left Column: Stats & Meta */}
+        <div className="lg:col-span-4 space-y-8 animate-fade-in-up">
+            <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium">
+                <div className="flex items-center space-x-4 mb-8">
+                    <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
+                    <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Facility Metadata</h3>
                 </div>
-              </td>
-            </tr>
-          </table>
-        </form>
-      </section>
+
+                <div className="space-y-6">
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Parent Organization</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="text"
+                            required
+                            disabled={edit}
+                            value={hospital}
+                            onChange={(e) => setHospital(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Bank Category</label>
+                        <div className="relative">
+                            <select
+                                value={category}
+                                disabled={edit}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                            >
+                                <option value="Private">Private</option>
+                                <option value="Govt.">Govt.</option>
+                                <option value="Red Cross">Red Cross</option>
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                                <i className="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Official Website</label>
+                        <div className="relative group">
+                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-500">
+                                <i className="fa-solid fa-globe"></i>
+                            </div>
+                            <input
+                                className="input-field dark:bg-secondary-900/50 pl-11"
+                                type="url"
+                                disabled={edit}
+                                value={website}
+                                onChange={(e) => setWebsite(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Presence Stats */}
+             <div className="glass dark:glass-dark rounded-[2.5rem] p-8 border border-white/20 shadow-premium">
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="p-4 rounded-3xl bg-success/5 border border-success/10 text-center">
+                        <div className="text-2xl font-black text-success">Active</div>
+                        <div className="text-[10px] font-bold text-secondary-500 uppercase tracking-widest mt-1">Status</div>
+                    </div>
+                    <div className="p-4 rounded-3xl bg-primary-50 border border-primary-100 text-center">
+                        <div className="text-2xl font-black text-primary-600">85%</div>
+                        <div className="text-[10px] font-bold text-secondary-500 uppercase tracking-widest mt-1">Trust Score</div>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        {/* Right Column: Contact & Location */}
+        <div className="lg:col-span-8 space-y-8 animate-fade-in-up delay-100">
+             <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium">
+                <div className="flex items-center space-x-4 mb-8">
+                    <div className="h-10 w-1 bg-success rounded-full"></div>
+                    <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Contact & Registration</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">Official Name</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50 font-bold"
+                            type="text"
+                            required
+                            disabled={edit}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">Contact Person</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="text"
+                            disabled={edit}
+                            value={contactPerson}
+                            onChange={(e) => setContactPerson(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">Official Email</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="email"
+                            disabled={edit}
+                            value={mail}
+                            onChange={(e) => setMail(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">Hotline Number</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="tel"
+                            required
+                            disabled={edit}
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 border-t border-secondary-100 dark:border-secondary-800 pt-8">
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">State</label>
+                         <div className="relative">
+                            <select
+                                disabled={edit}
+                                value={state}
+                                onChange={(e) => {
+                                    setState(e.target.value);
+                                    setDistrict(0);
+                                }}
+                                className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                            >
+                                {data.states.map((e, i) => (
+                                    <option key={i} value={i}>{e.state}</option>
+                                ))}
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                                <i className="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">District</label>
+                        <div className="relative">
+                            <select
+                                disabled={edit}
+                                value={district}
+                                onChange={(e) => setDistrict(e.target.value)}
+                                className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                            >
+                                {data.states[state].districts.map((e, i) => (
+                                    <option key={i} value={i}>{e}</option>
+                                ))}
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                                <i className="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="md:col-span-2 space-y-2">
+                        <label className="text-sm font-bold text-secondary-500 ml-1">Detailed Address</label>
+                        <textarea
+                            className="input-field dark:bg-secondary-900/50 min-h-[100px] pt-3"
+                            disabled={edit}
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                        ></textarea>
+                    </div>
+                </div>
+             </div>
+
+             {/* Map Card */}
+             <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium overflow-hidden">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+                    <div className="flex items-center space-x-4">
+                        <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
+                        <h3 className="text-lg font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Geospatial Presence</h3>
+                    </div>
+                    <button
+                        type="button"
+                        disabled={edit}
+                        onClick={fetchGeo}
+                        className="px-6 py-2.5 rounded-xl bg-primary-500 text-white font-bold text-sm shadow-lg shadow-primary-500/30 hover:bg-primary-600 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                    >
+                        <i className="fa-solid fa-location-crosshairs"></i>
+                        <span>Sync with My Location</span>
+                    </button>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-2 relative group">
+                        <div id="map" className="w-full h-[300px] rounded-[2rem] border-4 border-white dark:border-secondary-800 shadow-xl overflow-hidden"></div>
+                        <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-black/10 pointer-events-none"></div>
+                    </div>
+                    
+                    <div className="space-y-6">
+                        <div className="space-y-2">
+                            <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Latitude</label>
+                            <div className="p-4 rounded-2xl bg-secondary-50 dark:bg-white/5 border border-secondary-100 dark:border-secondary-800 font-mono font-bold text-secondary-900 dark:text-white">
+                                {latitude.toFixed(6)}
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Longitude</label>
+                            <div className="p-4 rounded-2xl bg-secondary-50 dark:bg-white/5 border border-secondary-100 dark:border-secondary-800 font-mono font-bold text-secondary-900 dark:text-white">
+                                {longitude.toFixed(6)}
+                            </div>
+                        </div>
+                        <div className="p-5 bg-warning/5 border border-warning/10 rounded-2xl">
+                             <div className="flex items-start space-x-3">
+                                <i className="fa-solid fa-triangle-exclamation text-warning mt-1 text-sm"></i>
+                                <p className="text-[10px] text-warning font-bold leading-relaxed uppercase tracking-wider">
+                                    Coordinates are used for the real-time locator system. Ensure accuracy for logistics support.
+                                </p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -4,8 +4,7 @@ import mapboxgl from "mapbox-gl";
 import Popup from "../Util/Popup";
 
 // --------------------------- MAPBOX TOKEN ---------------------------
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiY29yb2JvcmkiLCJhIjoiY2s3Y3FyaWx0MDIwbTNpbnc4emxkdndrbiJ9.9KeSiPVeMK0rWvJmTE0lVA";
+// Token assignment removed for push
 
 // --------------------------- COMPONENT ---------------------------
 const BanksSearch = ({ state, district, setBank }) => {
@@ -22,81 +21,86 @@ const BanksSearch = ({ state, district, setBank }) => {
   }, [state, district]);
 
   return (
-    <div className="mx-2 mt-3">
-      {/* --------------------------- BANKS TABLE --------------------------- */}
-      <table className="border w-full text-center rounded-md overflow-hidden">
-        <thead>
-          <tr>
-            <th className="border bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4">
-              Food Bank
-            </th>
-            <th className="border bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4">
-              Parent Organisation
-            </th>
-            <th className="border bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4">
-              Category
-            </th>
-            <th className="border bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4">
-              Address
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.length > 0 ? (
-            data.map((bank, i) => {
-              const isSelected = selected === i;
-              return (
-                <tr
-                  key={bank._id}
-                  className={`cursor-pointer ${
-                    isSelected
-                      ? "bg-red-600 text-white dark:bg-red-700 dark:text-white"
-                      : "hover:bg-red-100 dark:hover:bg-red-800 hover:text-black dark:hover:text-white"
-                  }`}
-                  onClick={() => {
-                    setSelected(isSelected ? -1 : i);
-                    setBank(isSelected ? "" : bank._id);
-                  }}
-                >
-                  <td className="py-2 px-4 border">{bank.name}</td>
-                  <td className="py-2 px-4 border">{bank.organisation}</td>
-                  <td className="py-2 px-4 border">{bank.category}</td>
-                  <td className="py-2 px-4 border">
-                    <div className="flex justify-between items-center">
-                      <div className="w-full">{bank.address}</div>
-                      <div className="flex items-center">
-                        <i
-                          className="fa-solid fa-circle-info fa-lg cursor-pointer"
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            setPopup(i);
-                          }}
-                        ></i>
-                        &nbsp;&nbsp;&nbsp;
-                        {isSelected ? (
-                          <i className="fa-regular fa-circle-check fa-lg"></i>
-                        ) : (
-                          <i className="fa-regular fa-circle fa-lg"></i>
-                        )}
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {data.length > 0 ? (
+          data.map((bank, i) => {
+            const isSelected = selected === i;
+            return (
+              <div
+                key={bank._id}
+                onClick={() => {
+                  setSelected(isSelected ? -1 : i);
+                  setBank(isSelected ? "" : bank._id);
+                }}
+                className={`group relative overflow-hidden rounded-3xl border transition-all duration-300 cursor-pointer ${
+                  isSelected
+                    ? "bg-primary-600 border-primary-500 shadow-xl shadow-primary-500/20 translate-y-[-4px]"
+                    : "bg-white/40 dark:bg-secondary-900/40 border-white/20 hover:border-primary-500/50 hover:bg-white/60 dark:hover:bg-secondary-900/60"
+                }`}
+              >
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="h-12 w-12 rounded-2xl bg-primary-100 dark:bg-primary-900/20 text-primary-600 flex items-center justify-center text-xl">
+                      <i className="fa-solid fa-building-columns"></i>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setPopup(i);
+                        }}
+                        className={`h-8 w-8 rounded-lg flex items-center justify-center transition-colors ${
+                          isSelected ? "text-white/80 hover:text-white" : "text-secondary-400 hover:text-primary-600"
+                        }`}
+                      >
+                        <i className="fa-solid fa-circle-info text-lg"></i>
+                      </button>
+                      <div className={`h-6 w-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                        isSelected 
+                          ? "bg-white border-white text-primary-600 scale-110" 
+                          : "border-secondary-300 dark:border-secondary-700"
+                      }`}>
+                        {isSelected && <i className="fa-solid fa-check text-[10px] font-black"></i>}
                       </div>
                     </div>
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td
-                colSpan={4}
-                className="text-center text-md font-bold py-6 dark:text-white"
-              >
-                No Data Found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+                  </div>
+
+                  <div>
+                    <h4 className={`text-lg font-bold transition-colors ${isSelected ? "text-white" : "text-secondary-900 dark:text-white"}`}>
+                      {bank.name}
+                    </h4>
+                    <p className={`text-xs font-medium mt-1 transition-colors ${isSelected ? "text-white/80" : "text-secondary-500 dark:text-white-400"}`}>
+                        {bank.organisation} • <span className="uppercase tracking-wider">{bank.category}</span>
+                    </p>
+                    <div className={`mt-4 pt-4 border-t flex items-start space-x-2 transition-colors ${
+                        isSelected ? "border-white/10 text-white/70" : "border-secondary-100 dark:border-secondary-800 text-secondary-500 dark:text-white-400"
+                    }`}>
+                        <i className="fa-solid fa-location-dot mt-0.5 text-[10px]"></i>
+                        <span className="text-xs leading-relaxed line-clamp-2">{bank.address}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Decorative background element for selected state */}
+                {isSelected && (
+                    <div className="absolute -right-4 -bottom-4 h-24 w-24 bg-white/10 rounded-full blur-2xl"></div>
+                )}
+              </div>
+            );
+          })
+        ) : (
+          <div className="col-span-full py-12 flex flex-col items-center justify-center text-center space-y-4 glass dark:glass-dark rounded-[2.5rem] border border-dashed border-secondary-300 dark:border-secondary-700">
+            <div className="h-16 w-16 bg-secondary-100 dark:bg-secondary-800/50 text-secondary-400 rounded-full flex items-center justify-center text-2xl">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div>
+              <p className="font-bold text-secondary-700 dark:text-white-300">No Food Banks Found</p>
+              <p className="text-sm text-secondary-400">Try adjusting your filters for state or district.</p>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* --------------------------- POPUP --------------------------- */}
       {popup !== -1 && data[popup] && (

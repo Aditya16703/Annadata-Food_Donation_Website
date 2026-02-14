@@ -47,194 +47,193 @@ const RegisterBank = (props) => {
   };
 
   return (
-    <div className="dark:bg-gray-bg pl-8">
-      <section className="flex justify-center items-center">
-        <div className="bg-white-900 rounded-xl m-2 w-max pb-10">
-          <form className="space-y-7" action="" onSubmit={(e) => submit(e)}>
-            <fieldset className="border border-solid border-gray-300 px-8 py-5">
-              {props.todo === "register" && (
-                <legend className="text-2xl font-bold mb-1">
-                  &nbsp;New Food Donation Camp&nbsp;
-                </legend>
-              )}
-              <p></p>
-              <fieldset className="border border-solid border-gray-300 px-7 py-5 pb-7">
-                {props.todo === "register" && (
-                  <legend className="text-2xl font-bold">
-                    &nbsp;Camp Details&nbsp;
-                  </legend>
-                )}
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="font-semibold leading-8">
-                      Camp Name:<font color="red">*</font>
-                    </label>
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="text"
-                      placeholder="Enter camp name"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label className="font-semibold leading-8">
-                      Conducted By:<font color="red">*</font>
-                    </label>
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="text"
-                      required
-                      disabled
-                      value={props.bank.name}
-                    />
-                  </div>
-                  <div>
-                    <label className="font-semibold leading-8">
-                      Organized By:<font color="red">*</font>
-                    </label>
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="text"
-                      placeholder="Enter organizer name"
-                      required
-                      value={organizer}
-                      onChange={(e) => setOrganizer(e.target.value)}
-                      ś
-                    />
-                  </div>
-                  <div>
-                    <label className="font-semibold  leading-8">
-                      Contact: <font color="red">*</font>
-                    </label>
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="number"
-                      placeholder="Enter organizer mobile"
-                      required
-                      value={contact}
-                      onChange={(e) => setContact(e.target.value)}
-                    />
-                  </div>
-                  <div className="col-span-2 grid grid-cols-3 gap-4">
-                    <div>
-                      <label className="font-semibold  leading-8">
-                        Date:<font color="red">*</font>
-                      </label>
-                      <input
-                        className="w-full p-3 text-md border border-silver rounded"
-                        type="date"
-                        placeholder="Enter organizer mobile"
-                        required
-                        value={date}
-                        min={new Date().toISOString().split("T")[0]}
-                        onChange={(e) => setDate(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label className="font-semibold  leading-8">
-                        Start time:<font color="red">*</font>
-                      </label>
-                      <input
-                        className="w-full p-3 text-md border border-silver rounded"
-                        type="time"
-                        placeholder="Enter organizer mobile"
-                        required
-                        value={start}
-                        onChange={(e) => setStart(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label className="font-semibold  leading-8">
-                        End time:<font color="red">*</font>
-                      </label>
-                      <input
-                        className="w-full p-3 text-md border border-silver rounded"
-                        type="time"
-                        placeholder="Enter organizer mobile"
-                        required
-                        value={end}
-                        onChange={(e) => setEnd(e.target.value)}
-                      />
-                    </div>
-                  </div>
+    <div className="w-full max-w-5xl mx-auto py-8 animate-fade-in">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+            <div className="flex items-center space-x-5">
+                <div className="h-16 w-16 rounded-[2rem] bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white text-3xl shadow-xl">
+                    <i className="fa-solid fa-tent"></i>
                 </div>
-              </fieldset>
-              <br />
-              <fieldset className="border border-solid border-gray-300 px-7 py-5 pb-7">
-                {props.todo === "register" && (
-                  <legend className="text-2xl font-bold">
-                    &nbsp;Address&nbsp;
-                  </legend>
-                )}
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label for="state" className="font-semibold  leading-8">
-                      State:<font color="red">*</font>
-                    </label>
-                    <select
-                      name="state"
-                      id="state"
-                      onChange={(e) => {
-                        setState(e.target.value);
-                        setDistrict(0);
-                      }}
-                      className="w-full p-3 text-md border border-silver rounded"
-                    >
-                      {data.states.map((e, i) => (
-                        <option value={i} selected={state === i}>
-                          {e.state}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label for="district" className="font-semibold  leading-8">
-                      District:<font color="red">*</font>
-                    </label>
-                    <select
-                      name="district"
-                      id="district"
-                      onChange={(e) => setDistrict(e.target.value)}
-                      className="w-full p-3 text-md border border-silver rounded"
-                    >
-                      {data.states[state].districts.map((e, i) => (
-                        <option value={i} selected={district === i}>
-                          {e}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="col-span-2">
-                    <label className="font-semibold  leading-8">
-                      Address:<font color="red">*</font>
-                    </label>
-                    <input
-                      className="w-full p-3 text-md border border-silver rounded"
-                      type="text"
-                      placeholder="Enter your complete address"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      required
-                    />
-                  </div>
+                <div>
+                  <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white mb-2">Initialize New Camp</h1>
+                  <p className="text-secondary-500 font-medium">Schedule a food distribution or donation event at a new venue.</p>
                 </div>
-              </fieldset>
-              <br />
-              <center>
-                <input type="submit" className={s1} value={"Register"} />
-              </center>
-            </fieldset>
-          </form>
+            </div>
+            
+            <div className="flex space-x-4">
+              <button
+                type="button"
+                onClick={() => navigate("/bank/camps")}
+                className="px-8 py-3 rounded-2xl font-bold bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-white transition-all active:scale-95 shadow-lg flex items-center space-x-2"
+              >
+                <i className="fa-solid fa-arrow-left"></i>
+                <span>Back to Events</span>
+              </button>
+            </div>
         </div>
-      </section>
-      <br />
-      <br />
-      <br />
+
+        <form onSubmit={submit} className="space-y-10">
+            {/* Camp Details Section */}
+            <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium">
+                <div className="flex items-center space-x-4 mb-10">
+                    <div className="h-10 w-1 bg-primary-600 rounded-full"></div>
+                    <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Event Core Details</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Event Reference Name</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="text"
+                            placeholder="e.g. Community Weekend Drive"
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Conducting Authority</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50 font-bold opacity-80"
+                            type="text"
+                            required
+                            disabled
+                            value={props.bank.name}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">On-Site Organizer</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="text"
+                            placeholder="Full name of representative"
+                            required
+                            value={organizer}
+                            onChange={(e) => setOrganizer(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Operational Contact</label>
+                        <input
+                            className="input-field dark:bg-secondary-900/50"
+                            type="tel"
+                            placeholder="10-digit mobile number"
+                            required
+                            value={contact}
+                            onChange={(e) => setContact(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 border-t border-secondary-100 dark:border-secondary-800 pt-8">
+                        <div className="space-y-2">
+                            <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Scheduled Date</label>
+                            <input
+                                className="input-field dark:bg-secondary-900/50"
+                                type="date"
+                                required
+                                value={date}
+                                min={new Date().toISOString().split("T")[0]}
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Shift Start</label>
+                            <input
+                                className="input-field dark:bg-secondary-900/50"
+                                type="time"
+                                required
+                                value={start}
+                                onChange={(e) => setStart(e.target.value)}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Shift End</label>
+                            <input
+                                className="input-field dark:bg-secondary-900/50"
+                                type="time"
+                                required
+                                value={end}
+                                onChange={(e) => setEnd(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Address Section */}
+            <div className="glass dark:glass-dark rounded-[3rem] p-10 border border-white/20 shadow-premium">
+                 <div className="flex items-center space-x-4 mb-10">
+                    <div className="h-10 w-1 bg-success rounded-full"></div>
+                    <h3 className="text-xl font-display font-bold text-secondary-900 dark:text-white uppercase tracking-wider">Venue Logistics</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">State Jurisdiction</label>
+                        <div className="relative">
+                            <select
+                                className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                                value={state}
+                                onChange={(e) => {
+                                    setState(e.target.value);
+                                    setDistrict(0);
+                                }}
+                            >
+                                {data.states.map((e, i) => (
+                                    <option key={i} value={i}>{e.state}</option>
+                                ))}
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                                <i className="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Target District</label>
+                         <div className="relative">
+                            <select
+                                className="input-field appearance-none dark:bg-secondary-900/50 pr-8"
+                                value={district}
+                                onChange={(e) => setDistrict(e.target.value)}
+                            >
+                                {data.states[state].districts.map((e, i) => (
+                                    <option key={i} value={i}>{e}</option>
+                                ))}
+                            </select>
+                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                                <i className="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="md:col-span-2 space-y-2">
+                        <label className="text-xs font-black text-secondary-400 uppercase tracking-widest ml-1">Venue Landmarks & Address</label>
+                        <textarea
+                            className="input-field dark:bg-secondary-900/50 min-h-[120px] pt-4"
+                            placeholder="Provide full location details for donors to easily locate the camp."
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center py-6">
+                <button
+                    type="submit"
+                    className="group relative px-12 py-5 rounded-[2rem] bg-secondary-900 dark:bg-white text-white dark:text-secondary-900 font-display font-black text-xl uppercase tracking-widest shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
+                >
+                    <div className="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                    <span className="relative z-10 flex items-center space-x-3 group-hover:text-white">
+                        <span>Deploy Camp</span>
+                        <i className="fa-solid fa-rocket group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                    </span>
+                </button>
+                <p className="text-[10px] font-bold text-secondary-400 uppercase tracking-[0.3em] mt-8">Secure Institutional Access Protocol</p>
+            </div>
+        </form>
     </div>
   );
 };
