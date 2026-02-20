@@ -49,8 +49,8 @@ const register = async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true, // Ensure cookie is only accessible by the web server
-        secure: true, // Ensure cookie is sent over HTTPS
-        sameSite: "none", // Allow cross-site requests
+        secure: process.env.NODE_ENV === "production", // Ensure cookie is sent over HTTPS in production
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-site requests in production
       })
       .send(); // Send the response
   } catch (err) {
@@ -105,8 +105,8 @@ const login = async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true, // Ensure cookie is only accessible by the web server
-        secure: true, // Ensure cookie is sent over HTTPS
-        sameSite: "none", // Allow cross-site requests
+        secure: process.env.NODE_ENV === "production", // Ensure cookie is sent over HTTPS in production
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-site requests in production
       })
       .send(); // Send the response
   } catch (err) {
@@ -124,8 +124,8 @@ const logout = (req, res) => {
   res
     .cookie("token", "", {
       httpOnly: true, // Ensure cookie is only accessible by the web server
-      secure: true, // Ensure cookie is sent over HTTPS
-      sameSite: "none", // Allow cross-site requests
+      secure: process.env.NODE_ENV === "production", // Ensure cookie is sent over HTTPS in production
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-site requests in production
     })
     .send(); // Send the response
   // Log the logout action to the console

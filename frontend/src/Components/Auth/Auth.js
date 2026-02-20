@@ -96,7 +96,7 @@ const Auth = () => {
       };
 
       const endpoint = isLogin ? `/auth/login/${handle}` : `/auth/${handle}`;
-      await axios.post(endpoint, formData, { withCredentials: true });
+      await axios.post(endpoint, formData);
       
       await getLoggedIn();
       navigate(isBank ? "/bank/profile" : "/user/profile");

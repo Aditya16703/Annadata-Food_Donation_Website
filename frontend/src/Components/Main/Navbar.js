@@ -76,7 +76,7 @@ const Navbar = (props) => {
                   to="/"
                   onClick={async () => {
                     try {
-                      await axios.get("/auth/logout", { withCredentials: true });
+                      await axios.get("/auth/logout");
                       await getLoggedIn();
                     } catch {
                       alert("Logout failed, please try again");
@@ -217,7 +217,7 @@ const Navbar = (props) => {
                 <button 
                   onClick={async () => {
                     try {
-                      await axios.get("/auth/logout", { withCredentials: true });
+                      await axios.get("/auth/logout");
                       await getLoggedIn();
                       setIsMobileMenuOpen(false);
                     } catch {
