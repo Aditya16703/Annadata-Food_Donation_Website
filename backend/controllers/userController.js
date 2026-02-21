@@ -83,16 +83,15 @@ const getRequests = async (req, res) => {
 // Update details of the current user
 const updateUser = async (req, res) => {
   try {
-    User.updateOne({ _id: req.user }, req.body, (err, user) => {
-      if (err) {
-        res.status(404).send("User not found"); // Sending 404 status response if user not found
-      } else {
-        res.status(200).send("User updated"); // Sending 200 status response for successful update
-      }
-    });
+    const result = await User.updateOne({ _id: req.user }, req.body);
+    if (result.matchedCount === 0) {
+      res.status(404).send("User not found");
+    } else {
+      res.status(200).send("User updated");
+    }
   } catch (err) {
-    console.error(err); // Logging any errors to the console
-    res.status(500).send(); // Sending 500 status response for server error
+    console.error(err);
+    res.status(500).send();
   }
 };
 

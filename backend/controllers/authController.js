@@ -12,16 +12,16 @@ const register = async (req, res) => {
     // Get the type of registration (user or food bank) from URL parameter
     const handle = req.params.handle;
 
-    // Check if a user or food bank with the given phone number already exists
+    // Check if a user or food bank with the given email already exists
     const existingUser =
       handle === "bank"
-        ? await FoodBank.findOne({ phone: req.body.phone }) // Check in FoodBank collection
-        : await User.findOne({ phone: req.body.phone }); // Check in User collection
+        ? await FoodBank.findOne({ email: req.body.email }) // Check in FoodBank collection
+        : await User.findOne({ email: req.body.email }); // Check in User collection
 
     // If user or food bank already exists, return an error response
     if (existingUser) {
       return res.status(400).json({
-        errorMessage: "An account with this phone number already exists.",
+        errorMessage: "An account with this email already exists.",
       });
     }
 
@@ -65,15 +65,15 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    // Extract phone and password from request body
-    const { phone, password } = req.body;
+    // Extract email and password from request body
+    const { email, password } = req.body;
     // Get the type of login (user or food bank) from URL parameter
     const handle = req.params.handle;
 
-    // Find the user or food bank with the given phone number
+    // Find the user or food bank with the given email
     const existingUser = await (handle == "bank"
-      ? FoodBank.findOne({ phone }) // Find in FoodBank collection
-      : User.findOne({ phone })); // Find in User collection
+      ? FoodBank.findOne({ email }) // Find in FoodBank collection
+      : User.findOne({ email })); // Find in User collection
 
     // If user or food bank does not exist, return an error response
     if (!existingUser) {

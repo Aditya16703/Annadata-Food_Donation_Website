@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema({
   gender: { type: String, required: true },
   // Food group the user is associated with, must be one of the defined foodGroups, required field
   foodGroup: { type: String, enum: foodGroups, required: true },
-  // User's email, optional field
-  email: { type: String },
+  // User's email, must be unique, required field
+  email: { type: String, unique: true, required: true },
   // User's phone number, must be unique, required field
   phone: { type: Number, unique: true, required: true },
   // User's password, required field

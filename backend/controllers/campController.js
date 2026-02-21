@@ -67,7 +67,7 @@ const updateCamp = async (req, res) => {
   try {
     if (req.params.userId) {
       // If userId is provided in params, update donor information
-      await Camp.update(
+      await Camp.updateOne(
         {
           _id: req.params.id, // Find camp by id
           donors: { $elemMatch: { _id: req.params.userId, status: 0 } }, // Match donor by userId and status 0 (pending)

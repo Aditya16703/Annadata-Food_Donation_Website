@@ -3,6 +3,10 @@ const colors = require("colors");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
+
+// Load environment variables BEFORE importing modules that use them
+dotenv.config();
+
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 
@@ -14,8 +18,6 @@ const userRoutes = require("./routes/userRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 
 const app = express();
-
-dotenv.config();
 
 // Database connection
 database.connectDB();
