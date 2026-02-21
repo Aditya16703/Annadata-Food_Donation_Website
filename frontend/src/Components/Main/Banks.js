@@ -23,7 +23,7 @@ const Banks = () => {
   }, [state, district]);
 
   return (
-    <div className="min-h-screen bg-white-100 dark:bg-black py-16 px-6 animate-fade-in">
+    <div className="min-h-screen bg-transparent dark:bg-transparent py-16 px-6 animate-fade-in">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white-900 mb-4">

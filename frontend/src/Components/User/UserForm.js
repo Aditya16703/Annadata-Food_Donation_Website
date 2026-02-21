@@ -294,7 +294,7 @@ const UserForm = () => {
                 </div>
             </div>
 
-            <div className="bg-white-100/50 dark:bg-black/50 rounded-3xl p-6 border border-white-900/10">
+            <div className="bg-white-100/50 dark:bg-secondary-900/40 rounded-3xl p-6 border border-white-900/10">
                 <BanksSearch
                     state={data.states[state].state}
                     district={data.states[state].districts[district]}

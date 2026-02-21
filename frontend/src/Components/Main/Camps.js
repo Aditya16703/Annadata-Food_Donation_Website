@@ -22,7 +22,7 @@ const Camps = () => {
   }, [state, district, date]);
 
   return (
-    <div className="min-h-screen bg-white-100 dark:bg-black py-16 px-6 animate-fade-in text-secondary-900 dark:text-white-900">
+    <div className="min-h-screen bg-transparent dark:bg-transparent py-16 px-6 animate-fade-in text-secondary-900 dark:text-white-900">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl font-display font-bold text-secondary-900 dark:text-white-900 mb-4">

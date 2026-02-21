@@ -29,7 +29,7 @@ const User = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-white-100 dark:bg-black text-secondary-900 dark:text-white-900 font-sans">
+    <div className="flex min-h-screen bg-transparent dark:bg-transparent text-secondary-900 dark:text-white-900 font-sans">
       {/* Sidebar - Now handled as a flexible column */}
       <aside className="w-72 fixed h-screen z-40 hidden lg:block">
         <UserNav data={nav} />

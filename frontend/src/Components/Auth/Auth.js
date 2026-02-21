@@ -33,6 +33,8 @@ const Auth = () => {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [locating, setLocating] = useState(false);
+  const [locationDetected, setLocationDetected] = useState(false);
 
   const isLogin = type === "login";
   const isBank = handle === "bank";
@@ -71,9 +73,10 @@ const Auth = () => {
 
     try {
       const formData = {
-        phone,
+        email,
         password,
         ...((!isLogin) && {
+          phone,
           name,
           state: data.states[state].state,
           district: data.states[state].districts[district],
@@ -108,7 +111,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white-100 dark:bg-black flex items-center justify-center py-16 px-6">
+    <div className="min-h-screen bg-transparent dark:bg-transparent flex items-center justify-center py-16 px-6">
       <div className="w-full max-w-2xl animate-fade-in">
         {/* Header */}
         <div className="text-center mb-12">
@@ -134,9 +137,42 @@ const Auth = () => {
               </div>
             )}
 
+            {/* Login Fields */}
+            {isLogin && (
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    className="input-field"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            )}
+
             {/* Registration Fields */}
             {!isLogin && (
               <>
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    className="input-field"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
                     {isBank ? "Food Bank Name" : "Full Name"}
@@ -183,100 +219,82 @@ const Auth = () => {
 
                 {/* User-specific fields (donors and receivers only) */}
                 {!isBank && (
-                  <>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                          Age
-                        </label>
-                        <input
-                          type="number"
-                          className="input-field"
-                          placeholder="Enter your age"
-                          value={age}
-                          onChange={(e) => setAge(e.target.value)}
-                          min="1"
-                          max="120"
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                        Age
+                      </label>
+                      <input
+                        type="number"
+                        className="input-field"
+                        placeholder="Enter your age"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        min="1"
+                        max="120"
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                        Gender
+                      </label>
+                      <div className="relative">
+                        <select
+                          className="input-field appearance-none pr-10"
+                          value={gender}
+                          onChange={(e) => setGender(e.target.value)}
                           required
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                          Gender
-                        </label>
-                        <div className="relative">
-                          <select
-                            className="input-field appearance-none pr-10"
-                            value={gender}
-                            onChange={(e) => setGender(e.target.value)}
-                            required
-                          >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                          </select>
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
-                            <i className="fa-solid fa-chevron-down text-xs"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                          Food Group
-                        </label>
-                        <div className="relative">
-                          <select
-                            className="input-field appearance-none pr-10"
-                            value={foodGroup}
-                            onChange={(e) => setFoodGroup(e.target.value)}
-                            required
-                          >
-                            {foodGroups.map((group, i) => (
-                              <option key={i} value={group}>{group}</option>
-                            ))}
-                          </select>
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
-                            <i className="fa-solid fa-chevron-down text-xs"></i>
-                          </div>
+                        >
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                          <i className="fa-solid fa-chevron-down text-xs"></i>
                         </div>
                       </div>
                     </div>
-                  </>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                        Food Group
+                      </label>
+                      <div className="relative">
+                        <select
+                          className="input-field appearance-none pr-10"
+                          value={foodGroup}
+                          onChange={(e) => setFoodGroup(e.target.value)}
+                          required
+                        >
+                          {foodGroups.map((group, i) => (
+                            <option key={i} value={group}>{group}</option>
+                          ))}
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary-400">
+                          <i className="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 )}
 
                 {/* Bank-specific fields */}
                 {isBank && (
-                  <>
-                    <div className="space-y-2">
-                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        className="input-field"
-                        placeholder="Enter official email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                        Category
-                      </label>
-                      <input
-                        type="text"
-                        className="input-field"
-                        placeholder="e.g., Community Food Bank, Hospital, NGO"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        required
-                      />
-                    </div>
-                  </>
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                      Category
+                    </label>
+                    <input
+                      type="text"
+                      className="input-field"
+                      placeholder="e.g., Community Food Bank, Hospital, NGO"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      required
+                    />
+                  </div>
                 )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -340,36 +358,93 @@ const Auth = () => {
                 </div>
 
                 {isBank && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                        Latitude
-                      </label>
-                      <input
-                        type="number"
-                        step="any"
-                        className="input-field"
-                        placeholder="e.g., 28.7041"
-                        value={latitude}
-                        onChange={(e) => setLatitude(e.target.value)}
-                        required
-                      />
-                    </div>
+                  <div className="space-y-4">
+                    <button
+                      type="button"
+                      disabled={locating}
+                      onClick={() => {
+                        if (!navigator.geolocation) {
+                          setError("Geolocation is not supported by your browser.");
+                          return;
+                        }
+                        setLocating(true);
+                        setError("");
+                        navigator.geolocation.getCurrentPosition(
+                          (position) => {
+                            setLatitude(position.coords.latitude.toFixed(6));
+                            setLongitude(position.coords.longitude.toFixed(6));
+                            setLocationDetected(true);
+                            setLocating(false);
+                          },
+                          (err) => {
+                            setError("Location access denied. Please allow location permissions or enter coordinates manually.");
+                            setLocating(false);
+                          },
+                          { enableHighAccuracy: true, timeout: 10000 }
+                        );
+                      }}
+                      className={`w-full py-4 rounded-2xl font-bold uppercase tracking-wider text-sm flex items-center justify-center space-x-3 transition-all ${
+                        locationDetected
+                          ? "bg-success/10 text-success border-2 border-success/30"
+                          : "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-800 hover:bg-primary-100 dark:hover:bg-primary-900/30"
+                      }`}
+                    >
+                      {locating ? (
+                        <><i className="fa-solid fa-spinner fa-spin"></i><span>Detecting Location...</span></>
+                      ) : locationDetected ? (
+                        <><i className="fa-solid fa-check-circle"></i><span>Location Detected</span></>
+                      ) : (
+                        <><i className="fa-solid fa-location-crosshairs"></i><span>Detect My Location</span></>
+                      )}
+                    </button>
 
-                    <div className="space-y-2">
-                      <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
-                        Longitude
-                      </label>
-                      <input
-                        type="number"
-                        step="any"
-                        className="input-field"
-                        placeholder="e.g., 77.1025"
-                        value={longitude}
-                        onChange={(e) => setLongitude(e.target.value)}
-                        required
-                      />
-                    </div>
+                    {(latitude || longitude) && (
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="flex items-center space-x-2 px-4 py-3 rounded-xl bg-secondary-50 dark:bg-secondary-900/40 border border-secondary-200 dark:border-secondary-700">
+                          <i className="fa-solid fa-arrows-up-down text-xs text-primary-500"></i>
+                          <span className="text-xs font-black text-secondary-400 uppercase">Lat:</span>
+                          <span className="text-sm font-bold text-secondary-800 dark:text-white-900">{latitude}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 px-4 py-3 rounded-xl bg-secondary-50 dark:bg-secondary-900/40 border border-secondary-200 dark:border-secondary-700">
+                          <i className="fa-solid fa-arrows-left-right text-xs text-primary-500"></i>
+                          <span className="text-xs font-black text-secondary-400 uppercase">Lng:</span>
+                          <span className="text-sm font-bold text-secondary-800 dark:text-white-900">{longitude}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {!locationDetected && !locating && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                            Or enter Latitude manually
+                          </label>
+                          <input
+                            type="number"
+                            step="any"
+                            className="input-field"
+                            placeholder="e.g., 28.7041"
+                            value={latitude}
+                            onChange={(e) => setLatitude(e.target.value)}
+                            required={!locationDetected}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs font-black text-secondary-400 dark:text-secondary-300 uppercase tracking-widest ml-1">
+                            Or enter Longitude manually
+                          </label>
+                          <input
+                            type="number"
+                            step="any"
+                            className="input-field"
+                            placeholder="e.g., 77.1025"
+                            value={longitude}
+                            onChange={(e) => setLongitude(e.target.value)}
+                            required={!locationDetected}
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </>

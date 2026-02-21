@@ -38,7 +38,7 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 p-4 transition-all duration-500 glass dark:glass-dark">
+      <nav className="sticky top-0 z-50 h-20 p-4 transition-all duration-500 glass dark:glass-dark">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4">
           {/* ✅ Logo Section */}
           <Link to="/" className="group transition-transform hover:scale-105">
@@ -154,66 +154,74 @@ const Navbar = (props) => {
           </div>
         </div>
 
-        {/* ✅ Mobile Menu Overlay */}
+      </nav>
+      {/* ✅ Mobile Menu Overlay - Moved outside <nav> to prevent layout/blur clipping */}
+      <div 
+        className={`lg:hidden fixed inset-0 z-40 bg-white-100/60 dark:bg-secondary-900/40 backdrop-blur-xl transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+        }`}
+        style={{ top: '80px', height: 'calc(100vh - 80px)' }} 
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
         <div 
-          className={`lg:hidden fixed inset-0 z-40 bg-white-100/95 dark:bg-black/95 backdrop-blur-xl transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
-          }`}
-          style={{ top: '80px' }} 
+          className="flex flex-col p-6 space-y-6 overflow-y-auto h-full"
+          onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col p-6 space-y-6 overflow-y-auto h-full pb-24">
-            {/* Mobile Navigation Links */}
-            
-            {/* About Section */}
-            <div className="space-y-3">
-              <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest">About Us</h3>
-              <div className="flex flex-col space-y-2">
-                <Link to="/" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                <Link to="/about" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>About Annadata</Link>
-                <Link to="/contactUs" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
-              </div>
+          {/* Mobile Navigation Links */}
+          
+          {/* About Section */}
+          <div className="space-y-3">
+            <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest border-l-2 border-primary-500 pl-3">About Us</h3>
+            <div className="flex flex-col space-y-3 pl-3">
+              <Link to="/" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              <Link to="/about" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Annadata</Link>
+              <Link to="/contactUs" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
             </div>
+          </div>
 
-            <div className="h-px bg-secondary-100 dark:bg-secondary-800"></div>
+          <div className="h-px bg-secondary-100 dark:bg-secondary-800 mx-3"></div>
 
-            {!props.logIn ? (
-              <>
-                 {/* Looking For Food */}
-                <div className="space-y-3">
-                  <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest">Looking For Food</h3>
-                  <div className="flex flex-col space-y-2">
-                    <Link to="/register/receiver" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>User Login/Register</Link>
-                    <Link to="/food-banks" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Bank Directory</Link>
-                  </div>
+          {!props.logIn ? (
+            <>
+               {/* Looking For Food */}
+              <div className="space-y-3">
+                <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest border-l-2 border-primary-500 pl-3">Looking For Food</h3>
+                <div className="flex flex-col space-y-3 pl-3">
+                  <Link to="/register/receiver" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>User Login/Register</Link>
+                  <Link to="/food-banks" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Food Bank Directory</Link>
                 </div>
+              </div>
 
-                <div className="h-px bg-secondary-100 dark:bg-secondary-800"></div>
+              <div className="h-px bg-secondary-100 dark:bg-secondary-800 mx-3"></div>
 
-                {/* Want To Donate */}
-                <div className="space-y-3">
-                  <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest">Want To Donate</h3>
-                  <div className="flex flex-col space-y-2">
-                    <Link to="/register/donor" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Donor Login/Register</Link>
-                    <Link to="/food-camps" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>Food Donation Camps</Link>
-                    <Link to="/about-food-donation" className="text-lg font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600" onClick={() => setIsMobileMenuOpen(false)}>About Food Donation</Link>
-                  </div>
+              {/* Want To Donate */}
+              <div className="space-y-3">
+                <h3 className="text-secondary-400 text-xs font-bold uppercase tracking-widest border-l-2 border-primary-500 pl-3">Want To Donate</h3>
+                <div className="flex flex-col space-y-3 pl-3">
+                  <Link to="/register/donor" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Food Donor Login/Register</Link>
+                  <Link to="/food-camps" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Food Donation Camps</Link>
+                  <Link to="/about-food-donation" className="text-xl font-medium text-secondary-900 dark:text-white-900 hover:text-primary-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Food Donation</Link>
                 </div>
+              </div>
 
-                <div className="h-px bg-secondary-100 dark:bg-secondary-800"></div>
+              <div className="h-px bg-secondary-100 dark:bg-secondary-800 mx-3"></div>
 
-                <Link to="/login/bank" className="btn-primary text-center py-3 w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              <div className="px-3 pt-2">
+                <Link to="/login/bank" className="btn-primary block text-center py-4 text-lg shadow-primary-500/20 shadow-lg" onClick={() => setIsMobileMenuOpen(false)}>
                   Food Bank Login
                 </Link>
-              </>
-            ) : (
-              <div className="space-y-4">
-                 <Link to={`/${props.user}/profile`} className="flex items-center space-x-3 text-lg font-medium text-secondary-900 dark:text-white-900" onClick={() => setIsMobileMenuOpen(false)}>
-                  <div className="h-10 w-10 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center">
-                    <i className="fa-solid fa-user"></i>
-                  </div>
-                  <span>My Profile</span>
-                </Link>
-                
+              </div>
+            </>
+          ) : (
+            <div className="space-y-6 pt-4">
+               <Link to={`/${props.user}/profile`} className="flex items-center space-x-4 p-4 rounded-2xl bg-secondary-50 dark:bg-secondary-900/50 text-xl font-medium text-secondary-900 dark:text-white-900" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="h-12 w-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center shadow-inner">
+                  <i className="fa-solid fa-user"></i>
+                </div>
+                <span>My Profile</span>
+              </Link>
+              
+              <div className="px-3">
                 <button 
                   onClick={async () => {
                     try {
@@ -224,15 +232,15 @@ const Navbar = (props) => {
                       alert("Logout failed, please try again");
                     }
                   }}
-                  className="btn-primary w-full py-3"
+                  className="btn-primary w-full py-4 text-lg shadow-primary-500/20 shadow-lg"
                 >
                   Log Out
                 </button>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-      </nav>
+      </div>
       {/* ✅ Outlet renders nested routes */}
       <Outlet />
     </>

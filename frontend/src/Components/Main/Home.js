@@ -40,7 +40,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-white-100 dark:bg-black min-h-screen font-sans selection:bg-primary-200 selection:text-primary-900">
+    <div className="bg-transparent dark:bg-transparent min-h-screen font-sans selection:bg-primary-200 selection:text-primary-900">
       {/* Hero Section */}
       <div className="relative pt-12 pb-20 px-6 overflow-hidden">
         {/* Decorative background elements */}

@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="min-h-[80vh] flex items-center justify-center py-20 px-6 bg-white-100 dark:bg-black">
+    <div className="min-h-[80vh] flex items-center justify-center py-20 px-6 bg-transparent dark:bg-transparent">
       <div className="max-w-4xl w-full animate-fade-in">
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold uppercase tracking-widest rounded-full mb-4">
